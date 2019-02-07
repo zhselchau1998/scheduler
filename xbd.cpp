@@ -22,8 +22,6 @@ int main(int argc, char* argv[]){
     string fileName(argv[fileArgIndex]);
     ifstream infile(fileName);
 
-    cout << fileName << "\n";
-
     //Third put ifstream into sstream
     if(infile){
         stringstream ss;
