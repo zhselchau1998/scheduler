@@ -8,22 +8,23 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     
-    bool isOutBinary = false;
-    int fileArgIndex = 2;
+    bool isOutBinary = false;//Hex format currently
+    bool isFileBinary = false;//Ascii format currently
+    int fileArgIndex = 2;//Binary format currently
 
     //First check for args
     if(argc == 3)
         if(strstr(argv[1], "-b") == 0)
             isOutBinary = true;    //Change format to binary
         else
-            fileArgIndex = 1;   //Filler for now
+            fileArgIndex = 1;   //Change format to hex
     
     //Second create ifstream 
     string fileName(argv[fileArgIndex]);
     ifstream infile(fileName);
 
     //Third put ifstream into sstream
-    if(file){
+    if(infile){
         stringstream ss;
         ss << infile.rdbuf();
         
@@ -32,6 +33,8 @@ int main(int argc, char* argv[]){
         //Fifth read file and convert
         
         //Sixth output result, maybe durring fifth step
+        cout << ss.rdbuf();
+        
         infile.close();
     }
 }
