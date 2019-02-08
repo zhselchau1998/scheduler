@@ -26,13 +26,16 @@ int main(int argc, char* argv[]){
     if(infile){
         stringstream ss;
         ss << infile.rdbuf();
+        string ssLine;
         
         //Fourth determine if the file is ascii or binary
-        
+        getline(ss, ssLine);
+
+
         //Fifth read file and convert
         
         //Sixth output result, maybe durring fifth step
-        cout << ss.rdbuf();
+        cout << ssLine << endl;         //Testing SS
         
         infile.close();
     }
