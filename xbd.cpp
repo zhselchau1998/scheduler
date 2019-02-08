@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char* argv[]){
     
     bool isOutBinary = false;       //Hex format currently
-    bool isFileBinary = false;      //Ascii format currently
+    bool isFileBinary = true;      //Binary format currently
     int fileArgIndex = 2;           //Binary format currently
 
     //First check for args
@@ -30,7 +30,13 @@ int main(int argc, char* argv[]){
         
         //Fourth determine if the file is ascii or binary
         getline(ss, ssLine);
-
+        for(int i = 0; i < ssLine.length(); i++){
+            //If this char is not a 1 or 0 then set file as ascii and break
+            if(ssLine[i] == '1' || ssLine[i] == '0')
+                continue;
+            isFileBinary = false;
+            break;
+        }
 
         //Fifth read file and convert
         
