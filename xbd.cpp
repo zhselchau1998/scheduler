@@ -10,7 +10,7 @@ using namespace std;
 int main(int argc, char* argv[]){
     
     bool isOutBinary = false;       //Hex format currently
-    bool isFileBinary = true;      //Binary format currently
+    bool isFileBinary = true;       //Binary format currently
     int fileArgIndex = 2;           //Binary format currently
 
     //First check for args
@@ -46,12 +46,13 @@ int main(int argc, char* argv[]){
                 isFileBinary = false;
                 break;
             }
-
-            //Fifth read file and convert
-        
-            //Sixth output result, maybe durring fifth step
-            cout << ssLine << endl;         //Testing SS
         }
+        
+        //Fifth read file and convert
+        
+        //Sixth output result, maybe durring fifth step
+        cout << ssLine << endl;         //Testing SS
+
         infile.close();
     }
 }
