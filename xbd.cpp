@@ -27,7 +27,8 @@ int main(int argc, char* argv[]){
     if(infile){
         stringstream ss;
         ss << infile.rdbuf();
-        string ssLine;
+        string ssLine;              //Each line in file
+        string fullText = "";            //Every character in file
 
         //Store the file line by line in a vector
         vector<string> buffer;
@@ -40,18 +41,18 @@ int main(int argc, char* argv[]){
             for(int i = 0; i < ssLine.length(); i++){
                 //If this char is not a 1 or 0 then set file as ascii and break
                 //If file is already confirmed binary break
-                
                 if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' || ssLine[i] == ' '))
                     continue;
                 isFileBinary = false;
                 break;
             }
+            fullText.append(ssLine);        //Storing every character in file as a string
         }
         
         //Fifth read file and convert
         
         //Sixth output result, maybe durring fifth step
-        cout << ssLine << endl;         //Testing SS
+        cout << fullText << endl;         //Testing SS
 
         infile.close();
     }
