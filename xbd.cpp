@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -27,22 +28,30 @@ int main(int argc, char* argv[]){
         stringstream ss;
         ss << infile.rdbuf();
         string ssLine;
+
+        //Store the file line by line in a vector
+        vector<string> buffer;
+        while(getline(ss, ssLine))
+            buffer.push_back(ssLine);
         
         //Fourth determine if the file is ascii or binary
-        getline(ss, ssLine);
-        for(int i = 0; i < ssLine.length(); i++){
-            //If this char is not a 1 or 0 then set file as ascii and break
-            if(ssLine[i] == '1' || ssLine[i] == '0')
-                continue;
-            isFileBinary = false;
-            break;
-        }
+        for(int n = 0; n < buffer.size(); n++){
+            ssLine = buffer[n];
+            for(int i = 0; i < ssLine.length(); i++){
+                //If this char is not a 1 or 0 then set file as ascii and break
+                //If file is already confirmed binary break
+                
+                if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' || ssLine[i] == ' '))
+                    continue;
+                isFileBinary = false;
+                break;
+            }
 
-        //Fifth read file and convert
+            //Fifth read file and convert
         
-        //Sixth output result, maybe durring fifth step
-        cout << ssLine << endl;         //Testing SS
-        
+            //Sixth output result, maybe durring fifth step
+            cout << ssLine << endl;         //Testing SS
+        }
         infile.close();
     }
 }
