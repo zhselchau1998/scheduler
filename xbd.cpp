@@ -6,19 +6,20 @@
 #include <vector>
 #include <algorithm>
 #include <stdlib>
+#include <cmath>
 
 using namespace std;
 
 int binaryToDecimal(string binaryString){
 
-    int sum = 0;
+    double sum = 0;
     reverse(binaryString.begin(), binaryString.end());
 
     for(int i=0; i<binaryString.length(); i++)
         if(binaryString[i] == '1'){
-            sum += 2^i;
+            sum += pow(2.0, (double)i);
         }
-    return sum;    
+    return (int)sum;    
 }
 
 char binaryToAscii(string bin){
