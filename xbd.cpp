@@ -5,6 +5,7 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
+#include <stdlib>
 
 using namespace std;
 
@@ -20,10 +21,10 @@ int binaryToDecimal(string binaryString){
     return sum;    
 }
 
-string binaryToAscii(string bin){
+char binaryToAscii(string bin){
 
     const int dec = binaryToDecimal(bin);
-    string noPanic = char(dec);
+    char noPanic = static_cast<char>(dec);
 
     return noPanic;
     
