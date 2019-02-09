@@ -19,6 +19,10 @@ int binaryToDecimal(string binaryString){
     return sum;    
 }
 
+string decimalToBinary(int num){
+    
+}
+
 string hexToBinary(string hexString){
     string binaryText = "";
 
@@ -44,6 +48,8 @@ string hexToBinary(string hexString){
 
     return binaryText;
 }
+
+
 
 int main(int argc, char* argv[]){
 
