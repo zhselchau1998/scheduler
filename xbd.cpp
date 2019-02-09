@@ -200,11 +200,13 @@ int main(int argc, char* argv[]){
                 if(isOutBinary){
                     ascii_chunk = currChunk;
                     // Convert ascii_chunk to binary_string
-
+                    binary_string = asciiToBinary(ascii_chunk);
                     // Append binary_string to binaryText
+                    binaryText.append(binary_string);
                 }else{
-
+                    ascii_chunk = currChunk;
                 }
+
             }
         }
 
