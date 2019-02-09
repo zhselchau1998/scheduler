@@ -270,9 +270,14 @@ int main(int argc, char* argv[]){
         //Sixth output result
 
         /* OUTPUT FORMAT: I = Index column, h = hex, b = binary and a = ascii
+
         if isOutBinary = False;
+        // Need a decimal counter for getting correct hex address.
+        // 
         IIIIIII hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh aaaaaaaaaaaaaaaa
+
         if isOutBinary = True
+        // Need a decimal counter for getting correct hex address.
         IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa */
 
         //cout << asciiText << endl;         //Testing SS
