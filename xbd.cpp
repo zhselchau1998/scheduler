@@ -51,15 +51,30 @@ int main(int argc, char* argv[]){
 
         //Fifth read file and convert
 
+        string asciiText;
+        string hexText;
+        string binaryText;
+
         /* Algorithm's output: 3(or 2) strings named:
           1. asciiText
           2. hexText
           3. binaryText
         */
 
-        //~ IF BINARY:
+        if(isFileBinary){
+
+            fullText = binaryText;
+            
+
+        } else{
+            
+            fullText = asciiText;
+
+        }
+
+        //~ isFileBinary = True:
           // Make a copy of fullText called binaryText.
-          // For loop for taking 8 char chunk after checking if the string has 8 chars avail.
+          // While loop for taking 8 char chunk after checking if the string has 8 chars avail.
           // 1 Put 8 char chunk in 'binary_chunk' and make a copy of 'binary_chunk' named 'binary_string'.
           // 1.b If isOutBinary = True, put 8 char chunk in 'binary_chunk'.
           // 2. Convert that 'binary_chunk' into 'hex_string' and 'binary_string'into 'Ascii_char'. If not convertable to Ascii, put the character '.'.
@@ -67,9 +82,9 @@ int main(int argc, char* argv[]){
           // 3. Put 'hex_string' in hexText and 'Ascii_char' in asciiText.
           // 3.b We already have a copy called binaryText. Put 'Ascii_char' in asciiText.
 
-        //~IF ASCII:
+        //~ isFileBinary = False:
           // Make a copy of fullText called asciiText.
-          // For loop taking 2 char chunk after checking if the string has 2 chars avail.
+          // While loop taking 2 char chunk after checking if the string has 2 chars avail.
           //1. Put 2 char chunk in 'ascii_chunk'
           //1.b If isOutBinary = True, Put 2 char chunk in 'ascii_chunk'.
           //2. Convert 'ascii_chunk' to 'hex_string'.
