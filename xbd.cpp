@@ -94,6 +94,12 @@ string binaryToHex(string binaryString){
     return hexString;
 }
 
+string decimalToHex(int num){
+    stringstream ss;
+    ss << hex << num;
+    return ss.str;
+}
+
 string asciiToHex(string asciiString){
     return(binaryToHex(asciiToBinary(asciiString)));
 }
