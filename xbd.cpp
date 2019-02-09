@@ -22,7 +22,7 @@ int binaryToDecimal(string binaryString){
 
 string binaryToAscii(string bin){
 
-    int dec = binaryToDecimal(bin);
+    const int dec = binaryToDecimal(bin);
     string noPanic = (char) dec;
 
     return noPanic;
