@@ -79,6 +79,16 @@ int main(int argc, char* argv[]){
             
             asciiText = fullText;
 
+            
+            while(){
+                string currChunk;
+
+                while(chunkLength < 2){
+                    if(fullText[charPointer] == ' ') continue;
+                    currChunk.append(fullText[charPointer++]);
+                    chunkLength++;
+                }
+            }
         }
 
         //~ isFileBinary = True:
