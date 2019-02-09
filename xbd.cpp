@@ -105,11 +105,23 @@ int main(int argc, char* argv[]){
             
             while(){
                 string currChunk;
+                string ascii_chunk;
+                string binary_string;
+                string hex_string;
 
                 while(chunkLength < 2){
                     if(fullText[charPointer] == ' ') continue;
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
+                }
+
+                if(isOutBinary){
+                    ascii_chunk = currChunk;
+                    // Convert ascii_chunk to binary_string
+
+                    // Append binary_string to binaryText
+                }else{
+
                 }
             }
         }
@@ -130,7 +142,7 @@ int main(int argc, char* argv[]){
           //1. Put 2 char chunk in 'ascii_chunk'
           //1.b If isOutBinary = True, Put 2 char chunk in 'ascii_chunk'.
           //2. Convert 'ascii_chunk' to 'hex_string'.
-          //2.b Convert 'ascii_chunk' to 'binary_string'.
+          //2.b Convert 'ascii_chunk' to 'hex_string' and then 'hex_string' to 'binary_string'.
           //3. Put 'hex_string' to hexText. We already have asciiText.
           //3.b Put 'binary_string' to binaryText. We already have asciiText.
 
