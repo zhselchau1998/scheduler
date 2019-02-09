@@ -54,6 +54,8 @@ int main(int argc, char* argv[]){
         string asciiText;
         string hexText;
         string binaryText;
+        int chunkLength = 0;  //Counts chars in chuck
+        int charPointer = 0; //Points to current char in fullText
 
         /* Algorithm's output: 3(or 2) strings named:
           1. asciiText
@@ -62,13 +64,20 @@ int main(int argc, char* argv[]){
         */
 
         if(isFileBinary){
-
-            fullText = binaryText;
             
+            binaryText = fullText;
+            
+            
+            string currChunk;
+            while(chunkLength < 8){ //Creating the chunk of binary
+                if(fullText[charPointer] == ' ') continue;
+                currChunk.append(fullText[charPointer++]);
+                chunkLength++;
+            }
 
         } else{
             
-            fullText = asciiText;
+            asciiText = fullText;
 
         }
 
