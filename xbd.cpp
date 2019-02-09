@@ -166,19 +166,24 @@ int main(int argc, char* argv[]){
                 string binary_chunk = "";
 
                 while(chunkLength < 8){ //Creating the chunk of binary
-                    if(fullText[charPointer] == ' ') continue;
+                    if(fullText[charPointer] == ' ') continue; // Skipping ' ' while chunking
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
                 }
                 if(isOutBinary){
                     binary_chunk = currChunk;
+                    // Convert 'binary_chunk' to 'ascii_char'
                     ascii_char = binaryToAscii(binary_chunk);
+                    // Append ascii_char to asciiText
                     asciiText.append(ascii_char);
                 }
                 else{
                     binary_chunk = currChunk;
+                    // Convert 'binary_chunk' to 'hex_string'
                     hex_string = binaryToHex(binary_chunk);
+                    // Append to hexText
                     hexText.append(hex_string);
+                    // Append to asciiText
                     asciiText.append(binaryToAscii(binary_chunk));
                 }
             }
