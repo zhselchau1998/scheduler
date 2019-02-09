@@ -15,6 +15,12 @@ using namespace std;
         2. While(hexIndex.length() < 8):
         3. Add 00s to the front of the string.
 */
+string decimalToAddress(int num){
+    string hexIndex = decimalToHex(num);
+    While(hexIndex.length() < 8) hexIndex.insert(0, "0");
+    return hexIndex;
+}
+
 
 int binaryToDecimal(string binaryString){
 
