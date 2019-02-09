@@ -280,6 +280,16 @@ int main(int argc, char* argv[]){
         // Need a decimal counter for getting correct hex address.
         IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa */
 
+        if(isOutBinary){
+            int address = 0
+            int binaryCounter = 0
+            int asciiCounter = 0
+        }else{
+            int address = 0
+            int hexCounter = 0
+            int asciiCounter = 0
+        }
+
         //cout << asciiText << endl;         //Testing SS
             
         infile.close();
