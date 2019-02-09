@@ -22,15 +22,15 @@ int binaryToDecimal(string binaryString){
     return (int)sum;    
 }
 
-char binaryToAscii(string bin){
+string binaryToAscii(string bin){
 
     const int dec = binaryToDecimal(bin);
     char noPanic;
 
     if(dec < 127 && dec > 31) {noPanic=static_cast<char>(dec);}
-    else return '.';
+    else return ".";
 
-    return noPanic;
+    return string(1, noPanic);
     
 }
 
@@ -161,9 +161,11 @@ int main(int argc, char* argv[]){
             binaryText = fullText;
             
             while(charPointer < fullText.length()){
+                chunkLength = 0;
                 string currChunk = "";
                 string hex_string = "";
                 string binary_chunk = "";
+                string ascii_char = "";
                 bool tooShortException = false;
 
                 while(chunkLength < 8){ //Creating the chunk of binary
@@ -171,13 +173,13 @@ int main(int argc, char* argv[]){
                         tooShortException=true;
                         break;
                     }
-                    currChunk.append(fullText[charPointer++]);
+                    currChunk.append(1, fullText[charPointer++]);
                     chunkLength++;
                 }
                 if(tooShortException){
                     if(chunkLength >= 4){
                         string specialCase = currChunk.substr(0, 4);
-                        asciiText.append('.');
+                        asciiText.append(".");
                         hexText.append(binaryToHex(specialCase));
                     }else break;
                 }
@@ -197,7 +199,7 @@ int main(int argc, char* argv[]){
                     // Append to asciiText
                     asciiText.append(binaryToAscii(binary_chunk));
                 }
-
+                
             }
         } else{
             
@@ -210,7 +212,7 @@ int main(int argc, char* argv[]){
                 string binary_string = "";
                 string hex_string = "";
 
-                currChunk.append(fullText[charPointer++]);
+                currChunk.append(1, fullText[charPointer++]);
 
                 if(isOutBinary){
                     ascii_chunk = currChunk;
@@ -223,7 +225,7 @@ int main(int argc, char* argv[]){
                     // Convert 'ascii_chunk' to 'hex_string'
                     hex_string = asciiToHex(ascii_chunk);
                     // Append hex_string to hexText
-                    hexText.append(hex_string)
+                    hexText.append(hex_string);
                 }
 
             }
@@ -250,8 +252,8 @@ int main(int argc, char* argv[]){
           //3.b Put 'binary_string' to binaryText. We already have asciiText.
 
         //Sixth output result, maybe durring fifth step
-        cout << fullText << endl;         //Testing SS
-
+        //cout << asciiText << endl;         //Testing SS
+            
         infile.close();
     }
 }
