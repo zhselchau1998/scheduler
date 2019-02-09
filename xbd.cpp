@@ -134,7 +134,7 @@ int main(int argc, char* argv[]){
             for(int i = 0; i < ssLine.length(); i++){
                 //If this char is not a 1 or 0 then set file as ascii and break
                 //If file is already confirmed binary break
-                if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' || ssLine[i] == ' '))
+                if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' ))//add "|| ssLine[i] == ' '" to end of if statement if spaces do not make a binary file ascii
                     continue;
                 isFileBinary = false;
                 break;
@@ -172,6 +172,7 @@ int main(int argc, char* argv[]){
                     chunkLength++;
                 }
                 if(isOutBinary){
+                    binary_chunk = currChunk;
 
                 }
                 else{
@@ -185,10 +186,10 @@ int main(int argc, char* argv[]){
 
             
             while(){
-                string currChunk;
-                string ascii_chunk;
-                string binary_string;
-                string hex_string;
+                string currChunk = "";
+                string ascii_chunk = "";
+                string binary_string = "";
+                string hex_string = "";
 
                 while(chunkLength < 2){
                     if(fullText[charPointer] == ' ') continue;
