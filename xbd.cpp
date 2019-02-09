@@ -144,9 +144,9 @@ int main(int argc, char* argv[]){
 
         //Fifth read file and convert
 
-        string asciiText;
-        string hexText;
-        string binaryText;
+        string asciiText = "";
+        string hexText = "";
+        string binaryText = "";
         int chunkLength = 0;  //Counts chars in chuck
         int charPointer = 0; //Points to current char in fullText
 
@@ -161,10 +161,10 @@ int main(int argc, char* argv[]){
             binaryText = fullText;
             
             while(){
-                string binary_string;
-                string currChunk;
-                string hex_string;
-                string binary_chunk;
+                string binary_string = "";
+                string currChunk = "";
+                string hex_string = "";
+                string binary_chunk = "";
 
                 while(chunkLength < 8){ //Creating the chunk of binary
                     if(fullText[charPointer] == ' ') continue;
@@ -192,7 +192,6 @@ int main(int argc, char* argv[]){
                 string hex_string = "";
 
                 while(chunkLength < 2){
-                    if(fullText[charPointer] == ' ') continue;
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
                 }
@@ -205,6 +204,10 @@ int main(int argc, char* argv[]){
                     binaryText.append(binary_string);
                 }else{
                     ascii_chunk = currChunk;
+                    // Convert 'ascii_chunk' to 'hex_string'
+                    hex_string = asciiToHex(ascii_chunk);
+                    // Append hex_string to hexText
+                    hexText.append(hex_string)
                 }
 
             }
