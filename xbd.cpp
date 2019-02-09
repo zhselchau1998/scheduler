@@ -173,7 +173,8 @@ int main(int argc, char* argv[]){
                 }
                 if(isOutBinary){
                     binary_chunk = currChunk;
-
+                    ascii_char = binaryToAscii(binary_chunk);
+                    asciiText.append(ascii_char);
                 }
                 else{
                     binary_string = currChunk;
