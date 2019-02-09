@@ -12,15 +12,9 @@ using namespace std;
 
 /* OUT INDEX FORMATTING FUNCTION
         1. For the counter, intialized index as decimal named 'decIndex'. Put in decimal to hex. Make copy of return(which is a string now) called 'hexIndex'.
-        2. While(hexIndex.length() < 8):
+        2. while(hexIndex.length() < 8):
         3. Add 00s to the front of the string.
 */
-string decimalToAddress(int num){
-    string hexIndex = decimalToHex(num);
-    While(hexIndex.length() < 8) hexIndex.insert(0, "0");
-    return hexIndex;
-}
-
 
 int binaryToDecimal(string binaryString){
 
@@ -109,14 +103,18 @@ string binaryToHex(string binaryString){
 string decimalToHex(int num){
     stringstream ss;
     ss << hex << num;
-    return ss.str;
+    return ss.str();
 }
 
 string asciiToHex(string asciiString){
     return(binaryToHex(asciiToBinary(asciiString)));
 }
 
-
+string decimalToAddress(int num){
+    string hexIndex = decimalToHex(num);
+    while(hexIndex.length() < 8) hexIndex.insert(0, "0");
+    return hexIndex;
+}
 
 int main(int argc, char* argv[]){
 
@@ -271,18 +269,10 @@ int main(int argc, char* argv[]){
 
         //Sixth output result
 
-       
-
-        
         /* OUTPUT FORMAT: I = Index column, h = hex, b = binary and a = ascii
-
         if isOutBinary = False;
-        // Need a decimal counter for getting correct hex address.
-        // 
         IIIIIII hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh aaaaaaaaaaaaaaaa
-
         if isOutBinary = True
-        // Need a decimal counter for getting correct hex address.
         IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa */
 
         //cout << asciiText << endl;         //Testing SS
