@@ -22,9 +22,27 @@ int binaryToDecimal(string binaryString){
 string hexToBinary(string hexString){
     string binaryText = "";
 
-    for(int i=3; i>-1; i--){
-        if(hexString[i] == '1') binaryText.append("0000");
+    for(int i=0; i>4; i++){
+        if(i == 2) binaryText.append(' ');
+        if(hexString[i] == '0') binaryText.append("0000");
+        if(hexString[i] == '1') binaryText.append("0001");
+        if(hexString[i] == '2') binaryText.append("0010");
+        if(hexString[i] == '3') binaryText.append("0011");
+        if(hexString[i] == '4') binaryText.append("0100");
+        if(hexString[i] == '5') binaryText.append("0101");
+        if(hexString[i] == '6') binaryText.append("0110");
+        if(hexString[i] == '7') binaryText.append("0111");
+        if(hexString[i] == '8') binaryText.append("1000");
+        if(hexString[i] == '9') binaryText.append("1001");
+        if(hexString[i] == 'A') binaryText.append("1010");
+        if(hexString[i] == 'B') binaryText.append("1011");
+        if(hexString[i] == 'C') binaryText.append("1100");
+        if(hexString[i] == 'D') binaryText.append("1101");
+        if(hexString[i] == 'E') binaryText.append("1110");
+        if(hexString[i] == 'F') binaryText.append("1111");
     }
+
+    return binaryText;
 }
 
 int main(int argc, char* argv[]){
