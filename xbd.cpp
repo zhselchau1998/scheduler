@@ -251,7 +251,12 @@ int main(int argc, char* argv[]){
           //3. Put 'hex_string' to hexText. We already have asciiText.
           //3.b Put 'binary_string' to binaryText. We already have asciiText.
 
-        //Sixth output result, maybe durring fifth step
+        //Sixth output result
+
+        //OUTPUT FORMAT: I = Index column, h = hex, b = binary and a = ascii
+        // IIIIIII hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh aaaaaaaaaaaaaaaa
+        // IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa
+
         //cout << asciiText << endl;         //Testing SS
             
         infile.close();
