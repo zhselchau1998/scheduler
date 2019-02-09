@@ -61,30 +61,31 @@ string asciiToBinary(string str){
 	return bin;
 }
 
-string hexToBinary(string hexString){
-    string binaryText = "";
+string binaryToHex(string binaryString){
+    string hexString = "";
 
-    for(int i=0; i>4; i++){
-        if(i == 2) binaryText.append(' ');
-        if(hexString[i] == '0') binaryText.append("0000");
-        if(hexString[i] == '1') binaryText.append("0001");
-        if(hexString[i] == '2') binaryText.append("0010");
-        if(hexString[i] == '3') binaryText.append("0011");
-        if(hexString[i] == '4') binaryText.append("0100");
-        if(hexString[i] == '5') binaryText.append("0101");
-        if(hexString[i] == '6') binaryText.append("0110");
-        if(hexString[i] == '7') binaryText.append("0111");
-        if(hexString[i] == '8') binaryText.append("1000");
-        if(hexString[i] == '9') binaryText.append("1001");
-        if(hexString[i] == 'A') binaryText.append("1010");
-        if(hexString[i] == 'B') binaryText.append("1011");
-        if(hexString[i] == 'C') binaryText.append("1100");
-        if(hexString[i] == 'D') binaryText.append("1101");
-        if(hexString[i] == 'E') binaryText.append("1110");
-        if(hexString[i] == 'F') binaryText.append("1111");
+    for(int i=0; i>2; i++){
+
+        if(strcmp(binaryString.substr(i*4, 4),  "0000")== 0) hexString.append("0");
+        if(strcmp(binaryString.substr(i*4, 4),  "0001")== 0) hexString.append("1");
+        if(strcmp(binaryString.substr(i*4, 4),  "0010")== 0) hexString.append("2");
+        if(strcmp(binaryString.substr(i*4, 4),  "0011")== 0) hexString.append("3");
+        if(strcmp(binaryString.substr(i*4, 4),  "0100")== 0) hexString.append("4");
+        if(strcmp(binaryString.substr(i*4, 4),  "0101")== 0) hexString.append("5");
+        if(strcmp(binaryString.substr(i*4, 4),  "0110")== 0) hexString.append("6");
+        if(strcmp(binaryString.substr(i*4, 4),  "0111")== 0) hexString.append("7");
+        if(strcmp(binaryString.substr(i*4, 4),  "1000")== 0) hexString.append("8");
+        if(strcmp(binaryString.substr(i*4, 4),  "1001")== 0) hexString.append("9");
+        if(strcmp(binaryString.substr(i*4, 4),  "1010")== 0) hexString.append("A");
+        if(strcmp(binaryString.substr(i*4, 4),  "1011")== 0) hexString.append("B");
+        if(strcmp(binaryString.substr(i*4, 4),  "1100")== 0) hexString.append("C");
+        if(strcmp(binaryString.substr(i*4, 4),  "1101")== 0) hexString.append("D");
+        if(strcmp(binaryString.substr(i*4, 4),  "1110")== 0) hexString.append("E");
+        if(strcmp(binaryString.substr(i*4, 4),  "1111")== 0) hexString.append("F");
+        
     }
 
-    return binaryText;
+    return hexString;
 }
 
 
