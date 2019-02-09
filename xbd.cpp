@@ -67,7 +67,7 @@ string asciiToBinary(string str){
 string binaryToHex(string binaryString){
     string hexString = "";
 
-    for(int i=0; i>2; i++){
+    for(int i=0; i<2; i++){
 
         if(strcmp(binaryString.substr(i*4, 4),  "0000")== 0) hexString.append("0");
         if(strcmp(binaryString.substr(i*4, 4),  "0001")== 0) hexString.append("1");
