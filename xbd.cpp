@@ -69,22 +69,22 @@ string binaryToHex(string binaryString){
 
     for(int i=0; i<2; i++){
 
-        if(strcmp(binaryString.substr(i*4, 4),  "0000")== 0) hexString.append("0");
-        if(strcmp(binaryString.substr(i*4, 4),  "0001")== 0) hexString.append("1");
-        if(strcmp(binaryString.substr(i*4, 4),  "0010")== 0) hexString.append("2");
-        if(strcmp(binaryString.substr(i*4, 4),  "0011")== 0) hexString.append("3");
-        if(strcmp(binaryString.substr(i*4, 4),  "0100")== 0) hexString.append("4");
-        if(strcmp(binaryString.substr(i*4, 4),  "0101")== 0) hexString.append("5");
-        if(strcmp(binaryString.substr(i*4, 4),  "0110")== 0) hexString.append("6");
-        if(strcmp(binaryString.substr(i*4, 4),  "0111")== 0) hexString.append("7");
-        if(strcmp(binaryString.substr(i*4, 4),  "1000")== 0) hexString.append("8");
-        if(strcmp(binaryString.substr(i*4, 4),  "1001")== 0) hexString.append("9");
-        if(strcmp(binaryString.substr(i*4, 4),  "1010")== 0) hexString.append("A");
-        if(strcmp(binaryString.substr(i*4, 4),  "1011")== 0) hexString.append("B");
-        if(strcmp(binaryString.substr(i*4, 4),  "1100")== 0) hexString.append("C");
-        if(strcmp(binaryString.substr(i*4, 4),  "1101")== 0) hexString.append("D");
-        if(strcmp(binaryString.substr(i*4, 4),  "1110")== 0) hexString.append("E");
-        if(strcmp(binaryString.substr(i*4, 4),  "1111")== 0) hexString.append("F");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0000")== 0) hexString.append("0");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0001")== 0) hexString.append("1");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0010")== 0) hexString.append("2");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0011")== 0) hexString.append("3");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0100")== 0) hexString.append("4");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0101")== 0) hexString.append("5");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0110")== 0) hexString.append("6");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "0111")== 0) hexString.append("7");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1000")== 0) hexString.append("8");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1001")== 0) hexString.append("9");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1010")== 0) hexString.append("A");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1011")== 0) hexString.append("B");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1100")== 0) hexString.append("C");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1101")== 0) hexString.append("D");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1110")== 0) hexString.append("E");
+        if(strcmp(binaryString.substr(i*4, 4).c_str(),  "1111")== 0) hexString.append("F");
         
     }
 
