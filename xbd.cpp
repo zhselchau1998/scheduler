@@ -19,6 +19,15 @@ int binaryToDecimal(string binaryString){
     return sum;    
 }
 
+string binaryToAscii(string bin){
+
+    int dec = binaryToDecimal(bin);
+    string noPanic = string(dec);
+
+    return noPanic;
+    
+}
+
 string decimalToBinary(int num){
 	string binStr = "";
 
