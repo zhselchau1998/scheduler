@@ -4,13 +4,14 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int binaryToDecimal(string binaryString){
 
     int sum = 0;
-    reverse(binaryString.begin(), binary_string.end());
+    reverse(binaryString.begin(), binaryString.end());
 
     for(int i=0; i<binaryString.length(); i++)
         if(binaryString[i] == '1'){
@@ -22,7 +23,7 @@ int binaryToDecimal(string binaryString){
 string binaryToAscii(string bin){
 
     int dec = binaryToDecimal(bin);
-    string noPanic = string(dec);
+    string noPanic = str(dec);
 
     return noPanic;
     
@@ -153,13 +154,21 @@ int main(int argc, char* argv[]){
             while(){
                 string binary_string;
                 string currChunk;
+                string hex_string;
+                string binary_chunk;
+
                 while(chunkLength < 8){ //Creating the chunk of binary
                     if(fullText[charPointer] == ' ') continue;
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
                 }
-                binary_string = currChunk;
+                if(isOutBinary){
 
+                }
+                else{
+                    binary_string = currChunk;
+
+                }
             }
         } else{
             
