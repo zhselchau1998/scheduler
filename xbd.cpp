@@ -5,7 +5,7 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
-#include <stdlib>
+#include <cstdlib>
 #include <cmath>
 
 using namespace std;
