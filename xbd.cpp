@@ -25,7 +25,10 @@ int binaryToDecimal(string binaryString){
 char binaryToAscii(string bin){
 
     const int dec = binaryToDecimal(bin);
-    char noPanic = static_cast<char>(dec);
+    char noPanic;
+
+    if(dec < 127 && dec > 31) {noPanic=static_cast<char>(dec);}
+    else return '.';
 
     return noPanic;
     
@@ -89,6 +92,10 @@ string binaryToHex(string binaryString){
     }
 
     return hexString;
+}
+
+string asciiToHex(string asciiString){
+
 }
 
 
