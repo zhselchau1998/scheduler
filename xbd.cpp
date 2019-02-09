@@ -161,7 +161,6 @@ int main(int argc, char* argv[]){
             binaryText = fullText;
             
             while(){
-                string binary_string = "";
                 string currChunk = "";
                 string hex_string = "";
                 string binary_chunk = "";
@@ -177,8 +176,10 @@ int main(int argc, char* argv[]){
                     asciiText.append(ascii_char);
                 }
                 else{
-                    binary_string = currChunk;
-
+                    binary_chunk = currChunk;
+                    hex_string = binaryToHex(binary_chunk);
+                    hexText.append(hex_string);
+                    asciiText.append(binaryToAscii(binary_chunk));
                 }
             }
         } else{
