@@ -95,7 +95,7 @@ string binaryToHex(string binaryString){
 }
 
 string asciiToHex(string asciiString){
-
+    return(binaryToHex(asciiToBinary(asciiString)));
 }
 
 
