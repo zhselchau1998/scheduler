@@ -20,7 +20,36 @@ int binaryToDecimal(string binaryString){
 }
 
 string decimalToBinary(int num){
-    
+	string binStr = "";
+
+	while (num > 0)
+	{
+		binStr = binStr.insert(0, string(1, (char)((num % 2) + 48)));
+
+		num /= 2;
+	}
+
+	return binStr;
+}
+
+string asciiToBinary(string str){
+    string bin = "";
+	int strLength = str.length();
+
+	for (int i = 0; i < strLength; ++i)
+	{
+		string cBin = decimalToBinary(str[i]);
+		int cBinLength = cBin.length();
+
+		if (cBinLength < 8) {
+			for (size_t i = 0; i < (8 - cBinLength); i++)
+				cBin = cBin.insert(0, "0");
+		}
+
+		bin += cBin;
+	}
+
+	return bin;
 }
 
 string hexToBinary(string hexString){
