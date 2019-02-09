@@ -67,14 +67,14 @@ int main(int argc, char* argv[]){
             
             binaryText = fullText;
             
-            
-            string currChunk;
-            while(chunkLength < 8){ //Creating the chunk of binary
-                if(fullText[charPointer] == ' ') continue;
-                currChunk.append(fullText[charPointer++]);
-                chunkLength++;
+            while(){
+                string currChunk;
+                while(chunkLength < 8){ //Creating the chunk of binary
+                    if(fullText[charPointer] == ' ') continue;
+                    currChunk.append(fullText[charPointer++]);
+                    chunkLength++;
+                }
             }
-
         } else{
             
             asciiText = fullText;
