@@ -160,30 +160,36 @@ int main(int argc, char* argv[]){
             
             binaryText = fullText;
             
-            while(){
+            while(charPointer < fullText.length()){
                 string currChunk = "";
                 string hex_string = "";
                 string binary_chunk = "";
+                bool tooShortException = false;
 
                 while(chunkLength < 8){ //Creating the chunk of binary
-                    if(fullText[charPointer] == ' ') continue; // Skipping ' ' while chunking
+                    if(charPointer >= fullText.length()){
+                        tooShortException=true;
+                        break;
+                    }
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
                 }
-                if(isOutBinary){
+                if(tooShortException){
+                    if(chunkLength >= 4){
+                        string specialCase = currChunk.substr(0, 4);
+                        asciiText.append('.');
+                        hexText.append(binaryToHex(specialCase));
+                    }else break;
+                }
+                else if(isOutBinary){
                     binary_chunk = currChunk;
-                    // Convert 'binary_chunk' to 'ascii_char'
                     ascii_char = binaryToAscii(binary_chunk);
-                    // Append ascii_char to asciiText
                     asciiText.append(ascii_char);
                 }
                 else{
                     binary_chunk = currChunk;
-                    // Convert 'binary_chunk' to 'hex_string'
                     hex_string = binaryToHex(binary_chunk);
-                    // Append to hexText
                     hexText.append(hex_string);
-                    // Append to asciiText
                     asciiText.append(binaryToAscii(binary_chunk));
                 }
             }
@@ -192,16 +198,13 @@ int main(int argc, char* argv[]){
             asciiText = fullText;
 
             
-            while(){
+            while(charPointer < fullText.length()){
                 string currChunk = "";
                 string ascii_chunk = "";
                 string binary_string = "";
                 string hex_string = "";
 
-                while(chunkLength < 2){
-                    currChunk.append(fullText[charPointer++]);
-                    chunkLength++;
-                }
+                currChunk.append(fullText[charPointer++]);
 
                 if(isOutBinary){
                     ascii_chunk = currChunk;
