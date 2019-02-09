@@ -7,6 +7,26 @@
 
 using namespace std;
 
+int binaryToDecimal(string binaryString){
+
+    int sum = 0;
+    reverse(binaryString.begin(), binary_string.end());
+
+    for(int i=0; i<binaryString.length(); i++)
+        if(binaryString[i] == '1'){
+            sum += 2^i;
+        }
+    return sum;    
+}
+
+string hexToBinary(string hexString){
+    string binaryText = "";
+
+    for(int i=3; i>-1; i--){
+        if(hexString[i] == '1') binaryText.append("0000");
+    }
+}
+
 int main(int argc, char* argv[]){
 
     bool isOutBinary = false;       //Hex format currently
@@ -68,12 +88,15 @@ int main(int argc, char* argv[]){
             binaryText = fullText;
             
             while(){
+                string binary_string;
                 string currChunk;
                 while(chunkLength < 8){ //Creating the chunk of binary
                     if(fullText[charPointer] == ' ') continue;
                     currChunk.append(fullText[charPointer++]);
                     chunkLength++;
                 }
+                binary_string = currChunk;
+
             }
         } else{
             
