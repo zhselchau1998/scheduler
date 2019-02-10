@@ -357,7 +357,7 @@ int main(int argc, char* argv[]){
                 asciiTextClone.append(" ");
             }
 
-            for(int i = 0; i < asciiTextClone.lenth(); i += 16){
+            for(int i = 0; i < asciiTextClone.length(); i += 16){
                 hexLine = addSpacesToHex(hexTextClone.substr(i*2, 32));
                 asciiLine = asciiTextClone.substr(i, 8);
 
