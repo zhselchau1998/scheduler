@@ -321,7 +321,7 @@ int main(int argc, char* argv[]){
             }
 
             //For each line
-            for(int i = 0; i < asciiTextClone.length(); i += 6)
+            for(int i = 0; i < asciiTextClone.length(); i += 6){
 
                 binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
                 asciiLine = asciiTextClone.substr(i, 6);
@@ -336,6 +336,7 @@ int main(int argc, char* argv[]){
                 cout << asciiLine << endl;
 
                 address += 6;//Incrementing the address
+            }
 
         }else{
             int address = 0;
