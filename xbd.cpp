@@ -303,9 +303,9 @@ int main(int argc, char* argv[]){
         IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa */
 
         if(isOutBinary){
-            int address = 0
-            int binaryCounter = 0
-            int asciiCounter = 0
+            int address = 0;
+            int binaryCounter = 0;
+            int asciiCounter = 0;
             string asciiTextClone = asciiText;
             string binaryTextClone = binaryText;
             string binaryLine = ""; // contains 8 char of binary in a word which appears 6 times.
@@ -338,9 +338,9 @@ int main(int argc, char* argv[]){
                 address += 6;//Incrementing the address
 
         }else{
-            int address = 0
-            int hexCounter = 0
-            int asciiCounter = 0
+            int address = 0;
+            int hexCounter = 0;
+            int asciiCounter = 0;
             string asciiTextClone = asciiText;
             string hexTextClone = hexText;
             string hexLine = ""; // contains 4 char of hex in a word which appears 8 times.
