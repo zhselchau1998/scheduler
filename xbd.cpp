@@ -117,13 +117,25 @@ string decimalToAddress(int num){
 }
 
 string addSpacesToBinary(string binary){
-    binary.append(" ");
+    binary.append("  ");
     binary.insert(40," ");
     binary.insert(32," ");
     binary.insert(24," ");
     binary.insert(16," ");
     binary.insert(8," ");
     return binary;
+}
+
+string addSpacesToHex(string hex){
+    hex.append("  ");
+    hex.insert(28," ");
+    hex.insert(24," ");
+    hex.insert(20," ");
+    hex.insert(16," ");
+    hex.insert(12," ");
+    hex.insert(8," ");
+    hex.insert(4," ");
+    return hex;
 }
 
 int main(int argc, char* argv[]){
