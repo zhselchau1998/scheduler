@@ -286,8 +286,9 @@ int main(int argc, char* argv[]){
             int asciiCounter = 0
             string asciiTextClone = asciiText;
             string binaryTextClone = binaryText;
-            string binaryLine = "";
-            //Fixing texts
+            string binaryLine = ""; // contains 8 char of binary in a word which appears 6 times.
+            string asciiLine = ""; // contains 6 chars of ascii
+            //Fixing texts so that we dont have any special cases
             for(int i = binaryText.length() % 48; i < 48; i++) binaryTextClone.append(" "); 
 
             //For each line
@@ -307,6 +308,18 @@ int main(int argc, char* argv[]){
             int address = 0
             int hexCounter = 0
             int asciiCounter = 0
+            string asciiTextClone = asciiText;
+            string hexTextClone = hexText;
+            string hexLine = ""; // contains 4 char of hex in a word which appears 8 times.
+            string asciiLine = ""; // contains 16 chars of ascii
+            // fix text so that we dont have any special cases
+            for(int i = hexText.length() % 32; i < 32; i++) hexTextClone.append(" "); // 8*4 = 32
+
+            for(int i = asciiTextClone.lenth(); i > 0; i -= 16){
+                // OUTPUT per line
+                cout << decimalToAddress(address) << ":" << " " << hexLine << " " << asciiLine << "\n";
+            }
+
         }
 
         //cout << asciiText << endl;         //Testing SS
