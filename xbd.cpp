@@ -321,8 +321,10 @@ int main(int argc, char* argv[]){
             }
 
             //For each line
-            for(int i = asciiTextClone.length(); i>0; i -= 6)
+            for(int i = 0; i < asciiTextClone.length(); i += 6)
 
+                binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
+                asciiLine = asciiTextClone.substr(i, 6);
 
                 //First output <address_>
                 cout << decimalToAddress(address) << ": ";
@@ -332,6 +334,8 @@ int main(int argc, char* argv[]){
 
                 //Third output asciiLine
                 cout << asciiLine << endl;
+
+                address += 6;//Incrementing the address
 
         }else{
             int address = 0
@@ -352,7 +356,7 @@ int main(int argc, char* argv[]){
                 asciiTextClone.append(" ");
             }
 
-            for(int i = asciiTextClone.lenth(); i > 0; i -= 16){
+            for(int i = 0; i < asciiTextClone.lenth(); i += 16){
                 // OUTPUT per line
                 cout << decimalToAddress(address) << ":" << " " << hexLine << " " << asciiLine << "\n";
             }
