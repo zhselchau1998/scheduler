@@ -284,6 +284,25 @@ int main(int argc, char* argv[]){
             int address = 0
             int binaryCounter = 0
             int asciiCounter = 0
+            string asciiTextClone = asciiText;
+            string binaryTextClone = binaryText;
+            string binaryLine = "";
+            //Fixing texts
+            for(int i = binaryText.length() % 48; i < 48; i++) binaryTextClone.append(" "); 
+
+            //For each line
+            for(int i = asciiTextClone.length(); i>0; i -= 6)
+
+
+                //First output <address_>
+                cout << decimalToAddress(address) << ": ";
+
+                //Second output binary line
+                cout << binaryLine << " ";
+
+                //Third output asciiLine
+                cout << asciiLine << endl;
+
         }else{
             int address = 0
             int hexCounter = 0
