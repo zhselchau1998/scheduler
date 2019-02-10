@@ -116,6 +116,16 @@ string decimalToAddress(int num){
     return hexIndex;
 }
 
+string addSpacesToBinary(string binary){
+    binary.append(" ");
+    binary.insert(40," ");
+    binary.insert(32," ");
+    binary.insert(24," ");
+    binary.insert(16," ");
+    binary.insert(8," ");
+    return binary;
+}
+
 int main(int argc, char* argv[]){
 
     bool isOutBinary = false;       //Hex format currently
