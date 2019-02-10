@@ -359,10 +359,11 @@ int main(int argc, char* argv[]){
 
             for(int i = 0; i < asciiTextClone.length(); i += 16){
                 hexLine = addSpacesToHex(hexTextClone.substr(i*2, 32));
-                asciiLine = asciiTextClone.substr(i, 8);
+                asciiLine = asciiTextClone.substr(i, 16);
 
                 // OUTPUT per line
                 cout << decimalToAddress(address) << ":" << " " << hexLine << " " << asciiLine << "\n";
+                address += 16;//Incrementing the address
             }
 
         }
