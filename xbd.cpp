@@ -311,7 +311,14 @@ int main(int argc, char* argv[]){
             string binaryLine = ""; // contains 8 char of binary in a word which appears 6 times.
             string asciiLine = ""; // contains 6 chars of ascii
             //Fixing texts so that we dont have any special cases
-            for(int i = binaryText.length() % 48; i < 48; i++) binaryTextClone.append(" "); 
+            for(int i = binaryText.length() % 48; i < 48; i++) {
+                if(i==0)break;
+                binaryTextClone.append(" "); 
+            }
+            for(int i = asciiTextClone.length() % 6; i < 6; i++){
+                if(i==0)break;
+                asciiTextClone.append(" ");
+            }
 
             //For each line
             for(int i = asciiTextClone.length(); i>0; i -= 6)
