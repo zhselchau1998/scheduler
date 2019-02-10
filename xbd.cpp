@@ -342,7 +342,15 @@ int main(int argc, char* argv[]){
             string hexLine = ""; // contains 4 char of hex in a word which appears 8 times.
             string asciiLine = ""; // contains 16 chars of ascii
             // fix text so that we dont have any special cases
-            for(int i = hexText.length() % 32; i < 32; i++) hexTextClone.append(" "); // 8*4 = 32
+            for(int i = hexText.length() % 32; i < 32; i++){
+                if(i==0)break; 
+                hexTextClone.append(" "); // 8*4 = 32
+            }
+
+            for(int i = asciiTextClone.length() % 16; i < 16; i++){
+                if(i==0)break;
+                asciiTextClone.append(" ");
+            }
 
             for(int i = asciiTextClone.lenth(); i > 0; i -= 16){
                 // OUTPUT per line
