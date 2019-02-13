@@ -150,38 +150,27 @@ int main(int argc, char* argv[]){
     else
         fileArgIndex = 1;           //Change format to hex
 
-    //Second create ifstream
+    //Second create ifstream and check if file is a binary file
     string fileName(argv[fileArgIndex]);
-    ifstream infile(fileName);
+    stringstream ss;
+    if(strcmp(fileName.substr(fileName.length()-4, 4).c_str(), ".txt")==0){
+        isFileBinary = false;
+        ifstream infile(fileName);
+        ss << infile.rdbuf();
+        infile.close();
+    }
+    else{
+        ifstream infile(fileName, ios::binary);
+        ss << infile.rdbuf();
+        infile.close();
+    }
 
     //Third put ifstream into sstream
-    if(infile){
-        stringstream ss;
-        ss << infile.rdbuf();
-        string ssLine;              //Each line in file
-        string fullText = "";            //Every character in file
-
-        //Store the file line by line in a vector
-        vector<string> buffer;
-        while(getline(ss, ssLine))
-            buffer.push_back(ssLine);
-
-        //Fourth determine if the file is ascii or binary
-        for(int n = 0; n < buffer.size(); n++){
-            ssLine = buffer[n];
-            for(int i = 0; i < ssLine.length(); i++){
-                //If this char is not a 1 or 0 then set file as ascii and break
-                //If file is already confirmed binary break
-                if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' ))//add "|| ssLine[i] == ' '" to end of if statement if spaces do not make a binary file ascii
-                    continue;
-                isFileBinary = false;
-                break;
-            }
-            fullText.append(ssLine);        //Storing every character in file as a string
-        }
+    if(true){
+            string ssLine;              //Each line in file
+            string fullText(ss.str());            //Every character in file
 
         //Fifth read file and convert
-
         string asciiText = "";
         string hexText = "";
         string binaryText = "";
@@ -193,12 +182,15 @@ int main(int argc, char* argv[]){
           2. hexText
           3. binaryText
         */
+        
 
         if(isFileBinary){
             
-            binaryText = fullText;
+            //Converting file to binary
+            for(int i=0; i<fullText.length(); i++)
+                binaryText.append(asciiToBinary(("" + fullText[i])));
             
-            while(charPointer < fullText.length()){
+            while(charPointer < binaryText.length()){
                 chunkLength = 0;
                 string currChunk = "";
                 string hex_string = "";
@@ -207,11 +199,11 @@ int main(int argc, char* argv[]){
                 bool tooShortException = false;
 
                 while(chunkLength < 8){ //Creating the chunk of binary
-                    if(charPointer >= fullText.length()){
+                    if(charPointer >= binaryText.length()){
                         tooShortException=true;
                         break;
                     }
-                    currChunk.append(1, fullText[charPointer++]);
+                    currChunk.append(1, binaryText[charPointer++]);
                     chunkLength++;
                 }
                 if(tooShortException){
@@ -369,7 +361,5 @@ int main(int argc, char* argv[]){
         }
 
         //cout << asciiText << endl;         //Testing SS
-            
-        infile.close();
     }
 }
