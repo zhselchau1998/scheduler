@@ -1,12 +1,11 @@
 #variables
 CC=g++
 
-export PATH="./:$PATH"
-
 all: xbd
-     $(CC) xbd.cpp -o xbd
+	$(CC) xbd.cpp -o xbd
+	export PATH="./:$PATH"
 
 clean:
-     rm -rf xbd
+	rm -rf xbd
     
 
