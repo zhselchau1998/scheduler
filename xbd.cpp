@@ -160,9 +160,18 @@ int main(int argc, char* argv[]){
         infile.close();
     }
     else{
-        ifstream infile(fileName.c_str(), ios::binary);
+        isFileBinary = false;
+        ifstream infile(fileName.c_str(), ios::in | ios::out | ios::binary);
         ss << infile.rdbuf();
         infile.close();
+        /*FILE* infile;
+        infile = fopen(fileName.c_str(),"rb");
+        int i[100];
+        for(int n=0; n<2; n++){
+            fread(&i, sizeof(i), 1, infile);
+            ss << i;
+        }
+        fclose(infile);*/
     }
 
     //Third put ifstream into sstream
