@@ -189,7 +189,7 @@ int main(int argc, char* argv[]){
             //Converting file to binary
             for(int i=0; i<fullText.length(); i++)
                 binaryText.append(asciiToBinary(("" + fullText[i])));
-            
+
             while(charPointer < binaryText.length()){
                 chunkLength = 0;
                 string currChunk = "";
