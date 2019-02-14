@@ -155,12 +155,12 @@ int main(int argc, char* argv[]){
     stringstream ss;
     if(strcmp(fileName.substr(fileName.length()-4, 4).c_str(), ".txt")==0){
         isFileBinary = false;
-        ifstream infile(fileName);
+        ifstream infile(fileName.c_str());
         ss << infile.rdbuf();
         infile.close();
     }
     else{
-        ifstream infile(fileName, ios::binary);
+        ifstream infile(fileName.c_str(), ios::binary);
         ss << infile.rdbuf();
         infile.close();
     }
