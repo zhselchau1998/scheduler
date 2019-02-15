@@ -130,7 +130,7 @@ string asciiToHex(string asciiString){
 
 string decimalToAddress(int num){
     string hexIndex = decimalToHex(num);
-    while(hexIndex.length() < 8) hexIndex.insert(0, "0");
+    while(hexIndex.length() < 7) hexIndex.insert(0, "0");
     return hexIndex;
 }
 
@@ -365,7 +365,7 @@ int main(int argc, char* argv[]){
                 cout << decimalToAddress(address) << ": ";
 
                 //Second output binary line
-                cout << binaryLine << " ";
+                cout << binaryLine;
 
                 //Third output asciiLine
                 cout << asciiLine << endl;
@@ -397,7 +397,7 @@ int main(int argc, char* argv[]){
                 asciiLine = asciiTextClone.substr(i, 16);
 
                 // OUTPUT per line
-                cout << decimalToAddress(address) << ":" << " " << hexLine << " " << asciiLine << "\n";
+                cout << decimalToAddress(address) << ":" << " " << hexLine << asciiLine << "\n";
                 address += 16;//Incrementing the address
             }
 
