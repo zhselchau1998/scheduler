@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cmath>
+#include <cstdint>
 
 using namespace std;
 
@@ -160,9 +161,14 @@ int main(int argc, char* argv[]){
         infile.close();
     }
     else{
-        isFileBinary = false;
-        ifstream infile(fileName.c_str(), ios::in | ios::out | ios::binary);
-        ss << infile.rdbuf();
+
+        
+        ifstream infile(fileName.c_str(), ios::ate | ios::binary);
+        auto size = infile.tellg();
+        string tmpstr(size, '\0');
+        infile.seekg(0);
+        if(infile.read(tmpstr[0], size))
+            ss << tmpstr;
         infile.close();
         /*FILE* infile;
         infile = fopen(fileName.c_str(),"rb");
