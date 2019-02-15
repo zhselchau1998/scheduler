@@ -83,13 +83,13 @@ string asciiToBinary(string str){
 
 	for (int i = 0; i < strLength; ++i)
 	{
-		string cBin = decimalToBinary(str[i]);
-		int cBinLength = cBin.length();
+		string cBin = decimalToBinary(int(str[i]));
+		/*int cBinLength = cBin.length();
 
 		if (cBinLength < 8) {
 			for (size_t i = 0; i < (8 - cBinLength); i++)
 				cBin = cBin.insert(0, "0");
-		}
+		}*/
 
 		bin += cBin;
 	}
@@ -177,7 +177,7 @@ int main(int argc, char* argv[]){
         ifstream infile(fileName.c_str());
         ss << infile.rdbuf();
         infile.close();
-        string fullText(ss.str()); 
+        fullText = ss.str(); 
     }
     else{
         FILE *fp;
@@ -188,27 +188,7 @@ int main(int argc, char* argv[]){
             c = fgetc(fp);
             fullText.append(decimalToBinary(c));
         }
-        //cout << fullText << endl;
         fclose(fp);
-        /*ifstream infile(fileName.c_str(), ios::binary);
-        ss << infile.rdbuf();
-        infile.close();*/
-        
-        /*ifstream infile(fileName.c_str(), ios::ate | ios::binary);
-        auto size = infile.tellg();
-        string tmpstr(size, '\0');
-        infile.seekg(0);
-        if(infile.read(tmpstr[0], size))
-            ss << tmpstr;
-        infile.close();
-        /*FILE* infile;
-        infile = fopen(fileName.c_str(),"rb");
-        int i[100];
-        for(int n=0; n<2; n++){
-            fread(&i, sizeof(i), 1, infile);
-            ss << i;
-        }
-        fclose(infile);*/
     }
 
     //Third put ifstream into sstream
@@ -285,8 +265,8 @@ int main(int argc, char* argv[]){
                 string binary_string = "";
                 string hex_string = "";
 
-                currChunk.append(1, fullText[charPointer++]);
-
+                currChunk.append(1, fullText[charPointer++]);\
+                
                 if(isOutBinary){
                     ascii_chunk = currChunk;
                     // Convert ascii_chunk to binary_string
