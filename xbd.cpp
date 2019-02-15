@@ -144,6 +144,7 @@ int main(int argc, char* argv[]){
     bool isOutBinary = false;       //Hex format currently
     bool isFileBinary = true;       //Binary format currently
     int fileArgIndex = 2;           //Binary format currently
+    string fullText = "";
 
     //First check for args
     if(strcmp(argv[1], "-b") == 0)
@@ -159,11 +160,24 @@ int main(int argc, char* argv[]){
         ifstream infile(fileName.c_str());
         ss << infile.rdbuf();
         infile.close();
+        string fullText(ss.str()); 
     }
     else{
+        FILE *fp;
+        int c = 0;
 
+        fp = fopen(argv[fileArgIndex], "r");
+        while(!feof(fp)){
+            c = fgetc(fp);
+            fullText.append(decimalToBinary(c));
+        }
+        cout << fullText << endl;
+        fclose(fp);
+        /*ifstream infile(fileName.c_str(), ios::binary);
+        ss << infile.rdbuf();
+        infile.close();*/
         
-        ifstream infile(fileName.c_str(), ios::ate | ios::binary);
+        /*ifstream infile(fileName.c_str(), ios::ate | ios::binary);
         auto size = infile.tellg();
         string tmpstr(size, '\0');
         infile.seekg(0);
@@ -182,8 +196,6 @@ int main(int argc, char* argv[]){
 
     //Third put ifstream into sstream
     if(true){
-            string ssLine;              //Each line in file
-            string fullText(ss.str());            //Every character in file
 
         //Fifth read file and convert
         string asciiText = "";
@@ -202,8 +214,7 @@ int main(int argc, char* argv[]){
         if(isFileBinary){
             
             //Converting file to binary
-            for(int i=0; i<fullText.length(); i++)
-                binaryText.append(asciiToBinary(("" + fullText[i])));
+            binaryText = fullText;
 
             while(charPointer < binaryText.length()){
                 chunkLength = 0;
