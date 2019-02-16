@@ -262,118 +262,116 @@ int main(int argc, char* argv[]){
     fclose(fp);
 
 
-    //if(true){
-        // Read file and convert
-        int chunkLength = 0;    // Counts chars in chuck
-        int charPointer = 0;    // Points to current char in fullText
-        binaryText = fullText;  // fullText is currently in Binary
+    // Read file and convert
+    int chunkLength = 0;    // Counts chars in chuck
+    int charPointer = 0;    // Points to current char in fullText
+    binaryText = fullText;  // fullText is currently in Binary
 
-        while(charPointer < binaryText.length()){
-            chunkLength = 0;
-            string currChunk = "";
-            string hex_string = "";
-            string binary_chunk = "";
-            string ascii_char = "";
-            bool tooShortException = false;
+    while(charPointer < binaryText.length()){
+        chunkLength = 0;
+        string currChunk = "";
+        string hex_string = "";
+        string binary_chunk = "";
+        string ascii_char = "";
+        bool tooShortException = false;
 
-            while(chunkLength < 8){ // Creating the chunk of binary
-                if(charPointer >= binaryText.length()){
-                    tooShortException=true;
-                    break;
-                }
-                currChunk.append(1, binaryText[charPointer++]);
-                chunkLength++;
+        while(chunkLength < 8){ // Creating the chunk of binary
+            if(charPointer >= binaryText.length()){
+                tooShortException=true;
+                break;
             }
-            if(tooShortException){
-                if(chunkLength >= 4){
-                    string specialCase = currChunk.substr(0, 4);
-                    asciiText.append(".");
-                    hexText.append(binaryToHex(specialCase));
-                }else break;
-            }
-            else if(isOutBinary){
-                binary_chunk = currChunk;
-                // Convert 'binary_chunk' to 'ascii_char'
-                ascii_char = binaryToAscii(binary_chunk);
-                // Append ascii_char to asciiText
-                asciiText.append(ascii_char);
-            }
-            else{
-                binary_chunk = currChunk;
-                // Convert 'binary_chunk' to 'hex_string'
-                hex_string = binaryToHex(binary_chunk);
-                // Append to hexText
-                hexText.append(hex_string);
-                // Append to asciiText
-                asciiText.append(binaryToAscii(binary_chunk));
-            }
-                
+            currChunk.append(1, binaryText[charPointer++]);
+            chunkLength++;
+        }
+        if(tooShortException){
+            if(chunkLength >= 4){
+                string specialCase = currChunk.substr(0, 4);
+                asciiText.append(".");
+                hexText.append(binaryToHex(specialCase));
+            }else break;
+        }
+        else if(isOutBinary){
+            binary_chunk = currChunk;
+            // Convert 'binary_chunk' to 'ascii_char'
+            ascii_char = binaryToAscii(binary_chunk);
+            // Append ascii_char to asciiText
+            asciiText.append(ascii_char);
+        }
+        else{
+            binary_chunk = currChunk;
+            // Convert 'binary_chunk' to 'hex_string'
+            hex_string = binaryToHex(binary_chunk);
+            // Append to hexText
+            hexText.append(hex_string);
+            // Append to asciiText
+            asciiText.append(binaryToAscii(binary_chunk));
+        }
+            
+    }
+
+    if(isOutBinary){
+        int address = 0;
+        int binaryCounter = 0;
+        int asciiCounter = 0;
+        string asciiTextClone = asciiText;
+        string binaryTextClone = binaryText;
+        string binaryLine = ""; // Contains 8 char of binary in a word which appears 6 times.
+        string asciiLine = ""; // Contains 6 chars of ascii
+        // Fixing texts so that we dont have any special cases
+        for(int i = binaryText.length() % 48; i < 48; i++) {
+            if(i==0)break;
+            binaryTextClone.append(" "); 
+        }
+        for(int i = asciiTextClone.length() % 6; i < 6; i++){
+            if(i==0)break;
+            asciiTextClone.append(" ");
         }
 
-        if(isOutBinary){
-            int address = 0;
-            int binaryCounter = 0;
-            int asciiCounter = 0;
-            string asciiTextClone = asciiText;
-            string binaryTextClone = binaryText;
-            string binaryLine = ""; // Contains 8 char of binary in a word which appears 6 times.
-            string asciiLine = ""; // Contains 6 chars of ascii
-            // Fixing texts so that we dont have any special cases
-            for(int i = binaryText.length() % 48; i < 48; i++) {
-                if(i==0)break;
-                binaryTextClone.append(" "); 
-            }
-            for(int i = asciiTextClone.length() % 6; i < 6; i++){
-                if(i==0)break;
-                asciiTextClone.append(" ");
-            }
+        // For each line
+        for(int i = 0; i < asciiTextClone.length(); i += 6){
 
-            // For each line
-            for(int i = 0; i < asciiTextClone.length(); i += 6){
+            binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
+            asciiLine = asciiTextClone.substr(i, 6);
 
-                binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
-                asciiLine = asciiTextClone.substr(i, 6);
+            // First output <address_>
+            cout << decimalToAddress(address) << ": ";
 
-                // First output <address_>
-                cout << decimalToAddress(address) << ": ";
+            // Second output binary line
+            cout << binaryLine;
 
-                // Second output binary line
-                cout << binaryLine;
+            // Third output asciiLine
+            cout << asciiLine << endl;
 
-                // Third output asciiLine
-                cout << asciiLine << endl;
+            address += 6;// Incrementing the address
+        }
 
-                address += 6;// Incrementing the address
-            }
+    }else{
+        int address = 0;
+        int hexCounter = 0;
+        int asciiCounter = 0;
+        string asciiTextClone = asciiText;
+        string hexTextClone = hexText;
+        string hexLine = ""; // Contains 4 char of hex in a word which appears 8 times.
+        string asciiLine = ""; // Contains 16 chars of ascii
+        // Fix text so that we dont have any special cases
+        for(int i = hexText.length() % 32; i < 32; i++){
+            if(i==0)break; 
+            hexTextClone.append(" "); // 8*4 = 32
+        }
 
-        }else{
-            int address = 0;
-            int hexCounter = 0;
-            int asciiCounter = 0;
-            string asciiTextClone = asciiText;
-            string hexTextClone = hexText;
-            string hexLine = ""; // Contains 4 char of hex in a word which appears 8 times.
-            string asciiLine = ""; // Contains 16 chars of ascii
-            // Fix text so that we dont have any special cases
-            for(int i = hexText.length() % 32; i < 32; i++){
-                if(i==0)break; 
-                hexTextClone.append(" "); // 8*4 = 32
-            }
+        for(int i = asciiTextClone.length() % 16; i < 16; i++){
+            if(i==0)break;
+            asciiTextClone.append(" ");
+        }
 
-            for(int i = asciiTextClone.length() % 16; i < 16; i++){
-                if(i==0)break;
-                asciiTextClone.append(" ");
-            }
+        for(int i = 0; i < asciiTextClone.length(); i += 16){
+            hexLine = addSpacesToHex(hexTextClone.substr(i*2, 32));
+            asciiLine = asciiTextClone.substr(i, 16);
 
-            for(int i = 0; i < asciiTextClone.length(); i += 16){
-                hexLine = addSpacesToHex(hexTextClone.substr(i*2, 32));
-                asciiLine = asciiTextClone.substr(i, 16);
-
-                // OUTPUT per line
-                cout << decimalToAddress(address) << ":" << " " << hexLine << asciiLine << "\n";
-                address += 16;// Incrementing the address
+            // OUTPUT per line
+            cout << decimalToAddress(address) << ":" << " " << hexLine << asciiLine << "\n";
+            address += 16;// Incrementing the address
             }
         }
-    //}
 }
 /******************************[ EOF: xbd.cpp ]****************************/
