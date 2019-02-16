@@ -262,18 +262,17 @@ int main(int argc, char* argv[]){
     fclose(fp);
 
 
-    // Read file and convert
-    int chunkLength = 0;    // Counts chars in chuck
-    int charPointer = 0;    // Points to current char in fullText
-    binaryText = fullText;  // fullText is currently in Binary
+    int chunkLength = 0;        // Counts chars in chuck
+    int charPointer = 0;        // Points to current char in fullText
+    binaryText = fullText;      // fullText is currently in Binary
 
     while(charPointer < binaryText.length()){
         chunkLength = 0;
-        string currChunk = "";
-        string hex_string = "";
-        string binary_chunk = "";
-        string ascii_char = "";
-        bool tooShortException = false;
+        string currChunk = "";  // Chunk containing 8 bits
+        string hex_string = ""; // Contains 2 hexadecimal characters
+        string binary_chunk = ""; // Contains 8 binary characters
+        string ascii_char = ""; // Contains 1 ascii character
+        bool tooShortException = false; // Redundant
 
         while(chunkLength < 8){ // Creating the chunk of binary
             if(charPointer >= binaryText.length()){
@@ -283,7 +282,7 @@ int main(int argc, char* argv[]){
             currChunk.append(1, binaryText[charPointer++]);
             chunkLength++;
         }
-        if(tooShortException){
+        if(tooShortException){      // Redundant
             if(chunkLength >= 4){
                 string specialCase = currChunk.substr(0, 4);
                 asciiText.append(".");
@@ -292,31 +291,25 @@ int main(int argc, char* argv[]){
         }
         else if(isOutBinary){
             binary_chunk = currChunk;
-            // Convert 'binary_chunk' to 'ascii_char'
-            ascii_char = binaryToAscii(binary_chunk);
-            // Append ascii_char to asciiText
-            asciiText.append(ascii_char);
+            ascii_char = binaryToAscii(binary_chunk); // Convert 'binary_chunk' to 'ascii_char'
+            asciiText.append(ascii_char);            // Append ascii_char to asciiText
         }
         else{
             binary_chunk = currChunk;
-            // Convert 'binary_chunk' to 'hex_string'
-            hex_string = binaryToHex(binary_chunk);
-            // Append to hexText
-            hexText.append(hex_string);
-            // Append to asciiText
-            asciiText.append(binaryToAscii(binary_chunk));
+            hex_string = binaryToHex(binary_chunk); // Convert 'binary_chunk' to 'hex_string'
+            hexText.append(hex_string);             // Append to hexText
+            asciiText.append(binaryToAscii(binary_chunk)); // Append to asciiText
         }
             
     }
 
     if(isOutBinary){
-        int address = 0;
-        int binaryCounter = 0;
-        int asciiCounter = 0;
-        string asciiTextClone = asciiText;
-        string binaryTextClone = binaryText;
-        string binaryLine = ""; // Contains 8 char of binary in a word which appears 6 times.
-        string asciiLine = ""; // Contains 6 chars of ascii
+        int address = 0;                    // Address counter in integer
+        string asciiTextClone = asciiText; // Redundant clones
+        string binaryTextClone = binaryText; // Redundant clones
+        string binaryLine = "";              // Contains 8 char of binary in a word which appears 6 times.
+        string asciiLine = "";              // Contains 6 chars of ascii
+
         // Fixing texts so that we dont have any special cases
         for(int i = binaryText.length() % 48; i < 48; i++) {
             if(i==0)break;
@@ -327,7 +320,7 @@ int main(int argc, char* argv[]){
             asciiTextClone.append(" ");
         }
 
-        // For each line
+        // For each line output
         for(int i = 0; i < asciiTextClone.length(); i += 6){
 
             binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
@@ -346,13 +339,12 @@ int main(int argc, char* argv[]){
         }
 
     }else{
-        int address = 0;
-        int hexCounter = 0;
-        int asciiCounter = 0;
-        string asciiTextClone = asciiText;
-        string hexTextClone = hexText;
-        string hexLine = ""; // Contains 4 char of hex in a word which appears 8 times.
-        string asciiLine = ""; // Contains 16 chars of ascii
+        int address = 0;                     // Address counter in integer
+        string asciiTextClone = asciiText;  // Redundant clones
+        string hexTextClone = hexText;      // Redundant clones
+        string hexLine = "";                // Contains 4 char of hex in a word which appears 8 times.
+        string asciiLine = "";              // Contains 16 chars of ascii
+        
         // Fix text so that we dont have any special cases
         for(int i = hexText.length() % 32; i < 32; i++){
             if(i==0)break; 
