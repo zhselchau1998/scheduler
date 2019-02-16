@@ -237,20 +237,20 @@ string addSpacesToHex(string hex){
  *************************************************************/
 int main(int argc, char* argv[]){
 
-    bool isOutBinary = false;       //Hex format currently
-    bool isFileBinary = true;       //Binary format currently
-    int fileArgIndex = 2;           //Binary format currently
-    string fullText = "";
-    string asciiText = "";
-    string hexText = "";
-    string binaryText = "";
+    bool isOutBinary = false;       // Hex format currently
+    bool isFileBinary = true;       // Binary format currently
+    int fileArgIndex = 2;           // Binary format currently
+    string fullText = "";           // Contents of the file in a string
+    string asciiText = "";          // Contents of the file as printable characters
+    string hexText = "";            // Contents of the file as hex string
+    string binaryText = "";         // Contents of the file as binary string
 
-    //First check for args
-    if(strcmp(argv[1], "-b") == 0)isOutBinary = true;         //Change format to binary
-    else fileArgIndex = 1;           //Change format to hex
+    // Check for args
+    if(strcmp(argv[1], "-b") == 0)isOutBinary = true;         // Change format to binary
+    else fileArgIndex = 1;           // Change format to hex
 
-    //Second create ifstream and check if file is a binary file
-    string fileName(argv[fileArgIndex]);
+    //Takes contents of the file and puts in fullText
+    string fileName(argv[fileArgIndex]); 
     FILE *fp;
     int c = 0;
 
@@ -261,12 +261,12 @@ int main(int argc, char* argv[]){
     }
     fclose(fp);
 
-    //Third put ifstream into sstream
-    if(true){
-        //Fifth read file and convert
-        int chunkLength = 0;    //Counts chars in chuck
-        int charPointer = 0;    //Points to current char in fullText
-        binaryText = fullText;  //fullText is currently in Binary
+
+    //if(true){
+        // Read file and convert
+        int chunkLength = 0;    // Counts chars in chuck
+        int charPointer = 0;    // Points to current char in fullText
+        binaryText = fullText;  // fullText is currently in Binary
 
         while(charPointer < binaryText.length()){
             chunkLength = 0;
@@ -276,7 +276,7 @@ int main(int argc, char* argv[]){
             string ascii_char = "";
             bool tooShortException = false;
 
-            while(chunkLength < 8){ //Creating the chunk of binary
+            while(chunkLength < 8){ // Creating the chunk of binary
                 if(charPointer >= binaryText.length()){
                     tooShortException=true;
                     break;
@@ -310,28 +310,15 @@ int main(int argc, char* argv[]){
                 
         }
 
-        //Sixth output result
-
-        /* OUTPUT FORMAT: I = Index column, h = hex, b = binary and a = ascii
-
-        if isOutBinary = False;
-        // Need a decimal counter for getting correct hex address.
-        // 
-        IIIIIII hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh aaaaaaaaaaaaaaaa
-
-        if isOutBinary = True
-        // Need a decimal counter for getting correct hex address.
-        IIIIIII bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb bbbbbbbb aaaaaa */
-
         if(isOutBinary){
             int address = 0;
             int binaryCounter = 0;
             int asciiCounter = 0;
             string asciiTextClone = asciiText;
             string binaryTextClone = binaryText;
-            string binaryLine = ""; // contains 8 char of binary in a word which appears 6 times.
-            string asciiLine = ""; // contains 6 chars of ascii
-            //Fixing texts so that we dont have any special cases
+            string binaryLine = ""; // Contains 8 char of binary in a word which appears 6 times.
+            string asciiLine = ""; // Contains 6 chars of ascii
+            // Fixing texts so that we dont have any special cases
             for(int i = binaryText.length() % 48; i < 48; i++) {
                 if(i==0)break;
                 binaryTextClone.append(" "); 
@@ -341,22 +328,22 @@ int main(int argc, char* argv[]){
                 asciiTextClone.append(" ");
             }
 
-            //For each line
+            // For each line
             for(int i = 0; i < asciiTextClone.length(); i += 6){
 
                 binaryLine = addSpacesToBinary(binaryTextClone.substr(i*8, 48));
                 asciiLine = asciiTextClone.substr(i, 6);
 
-                //First output <address_>
+                // First output <address_>
                 cout << decimalToAddress(address) << ": ";
 
-                //Second output binary line
+                // Second output binary line
                 cout << binaryLine;
 
-                //Third output asciiLine
+                // Third output asciiLine
                 cout << asciiLine << endl;
 
-                address += 6;//Incrementing the address
+                address += 6;// Incrementing the address
             }
 
         }else{
@@ -365,9 +352,9 @@ int main(int argc, char* argv[]){
             int asciiCounter = 0;
             string asciiTextClone = asciiText;
             string hexTextClone = hexText;
-            string hexLine = ""; // contains 4 char of hex in a word which appears 8 times.
-            string asciiLine = ""; // contains 16 chars of ascii
-            // fix text so that we dont have any special cases
+            string hexLine = ""; // Contains 4 char of hex in a word which appears 8 times.
+            string asciiLine = ""; // Contains 16 chars of ascii
+            // Fix text so that we dont have any special cases
             for(int i = hexText.length() % 32; i < 32; i++){
                 if(i==0)break; 
                 hexTextClone.append(" "); // 8*4 = 32
@@ -384,12 +371,9 @@ int main(int argc, char* argv[]){
 
                 // OUTPUT per line
                 cout << decimalToAddress(address) << ":" << " " << hexLine << asciiLine << "\n";
-                address += 16;//Incrementing the address
+                address += 16;// Incrementing the address
             }
-
         }
-
-        //cout << asciiText << endl;         //Testing SS
-    }
+    //}
 }
 /******************************[ EOF: xbd.cpp ]****************************/
