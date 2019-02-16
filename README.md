@@ -1,18 +1,16 @@
- <!---
+ <!-----------------------------------------------------------------
  Name: Zach Selchau
  username: cssc0418
  Project: CS530 Assignment 1
  File: README.md
  Notes: A README file describing the program and detailing its files.
--->
 
-<!---
  Name: Darpan Beri
  username: cssc0429
  Project: CS530 Assignment 1
  File: README.md
   Notes: A README file describing the program and detailing its files.
--->
+--------------------------------------------------------------------->
 
 ## CS-530, Spring 2019 Assignment 1
 ### Developed by Zach Selchau(cssc0418) and Darpan Beri(cssc0429)
@@ -97,3 +95,4 @@
 
 * DB is really good with Algorithms.
 
+<!-----------------------------------------[ EOF: README.md ]--------------------------------->
