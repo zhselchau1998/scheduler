@@ -1,3 +1,19 @@
+/*********************************************************************
+ Name: Zach Selchau
+ username: cssc0418
+ Project: CS530 Assignment 1
+ File: xbd.cpp
+ Notes: The sourcecode file containing the functions and code required to run a hex/binarydump program.
+
+
+
+ Name: Darpan Beri
+ username: cssc0429
+ Project: CS530 Assignment 1
+ File: xbd.cpp
+  Notes: The sourcecode file containing the functions and code required to run a hex/binarydump program.
+**********************************************************************/
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -10,12 +26,6 @@
 
 
 using namespace std;
-
-/* OUT INDEX FORMATTING FUNCTION
-        1. For the counter, intialized index as decimal named 'decIndex'. Put in decimal to hex. Make copy of return(which is a string now) called 'hexIndex'.
-        2. while(hexIndex.length() < 8):
-        3. Add 00s to the front of the string.
-*/
 
 int binaryToDecimal(string binaryString){
 
