@@ -20,11 +20,16 @@
 
 **Makefile**:
 
-    Add description here.
+    Creates a compiled version of xbd.cpp.
 
 #### Compilation Instructions:
-    xbd <filename>
-    xbd -b <filename>
+    make all
+    	compiles the xbd file
+    make clear
+    	deletes the xbd file
+    **Running the Program**
+    	xbd <filename>
+    	xbd -b <filename>
 **NOTE:** <> are not part of the command.
 
 #### Operating Instructions:
@@ -37,7 +42,7 @@
     The program can only work with regular file type(binary or text/ASCII content). Unwanted behavior will occur otherwise.
 
 #### Significant Design Decisions:
-**idk add some stuff**
+    We stored the file in strings for binary, hex, and ASCII content and edited the strings.
 
 #### Extra features:
 **Binary to Decimal:**
