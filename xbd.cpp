@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cmath>
+#include "xbd.hpp"
 
 
 using namespace std;
@@ -245,10 +246,8 @@ int main(int argc, char* argv[]){
     string binaryText = "";
 
     //First check for args
-    if(strcmp(argv[1], "-b") == 0)
-        isOutBinary = true;         //Change format to binary
-    else
-        fileArgIndex = 1;           //Change format to hex
+    if(strcmp(argv[1], "-b") == 0)isOutBinary = true;         //Change format to binary
+    else fileArgIndex = 1;           //Change format to hex
 
     //Second create ifstream and check if file is a binary file
     string fileName(argv[fileArgIndex]);
@@ -264,20 +263,10 @@ int main(int argc, char* argv[]){
 
     //Third put ifstream into sstream
     if(true){
-
         //Fifth read file and convert
-        
-        int chunkLength = 0;  //Counts chars in chuck
-        int charPointer = 0; //Points to current char in fullText
-
-        /* Algorithm's output: 3(or 2) strings named:
-          1. asciiText
-          2. hexText
-          3. binaryText
-        */
-
-        //fullText is currently in Binary
-        binaryText = fullText;
+        int chunkLength = 0;    //Counts chars in chuck
+        int charPointer = 0;    //Points to current char in fullText
+        binaryText = fullText;  //fullText is currently in Binary
 
         while(charPointer < binaryText.length()){
             chunkLength = 0;
@@ -320,26 +309,6 @@ int main(int argc, char* argv[]){
             }
                 
         }
-
-        /*~ isFileBinary = True:
-          Make a copy of fullText called binaryText.
-          While loop for taking 8 char chunk after checking if the string has 8 chars avail.
-          1 Put 8 char chunk in 'binary_chunk' and make a copy of 'binary_chunk' named 'binary_string'.
-          1.b If isOutBinary = True, put 8 char chunk in 'binary_chunk'.
-          2. Convert that 'binary_chunk' into 'hex_string' and 'binary_string'into 'Ascii_char'. If not convertable to Ascii, put the character '.'.
-          2.b Convert 'binary chunk' to 'Ascii_char'. If not convertable to Ascii, put the character '.'.
-          3. Put 'hex_string' in hexText and 'Ascii_char' in asciiText.
-          3.b We already have a copy called binaryText. Put 'Ascii_char' in asciiText.*/
-
-        /* ~ isFileBinary = False:
-          Make a copy of fullText called asciiText.
-          While loop taking 2 char chunk after checking if the string has 2 chars avail.
-          1. Put 2 char chunk in 'ascii_chunk'
-          1.b If isOutBinary = True, Put 2 char chunk in 'ascii_chunk'.
-          2. Convert 'ascii_chunk' to 'hex_string'.
-          2.b Convert 'ascii_chunk' to 'hex_string' and then 'hex_string' to 'binary_string'.
-          3. Put 'hex_string' to hexText. We already have asciiText.
-          3.b Put 'binary_string' to binaryText. We already have asciiText. */
 
         //Sixth output result
 

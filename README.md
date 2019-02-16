@@ -26,24 +26,25 @@
 
 **xbd.cpp**:
 
-    Add description here.
+    Takes in a file  through the command line and dumps the data of that file byte by byte into standard out.
 
-**HEADER FILE HERE**:
+**xbd.hpp**:
 
-    Add description here.
+    Declares and briefly explains functions implemented in xbd.cpp.
 
 **Makefile**:
 
     Creates a compiled version of xbd.cpp.
 
 #### Compilation Instructions:
+**Make Instructions**
     make all
     	compiles the xbd file
     make clear
     	deletes the xbd file
-    **Running the Program**
-    	xbd <filename>
-    	xbd -b <filename>
+**Running the Program**
+    xbd <filename>
+    xbd -b <filename>
 **NOTE:** <> are not part of the command.
 
 #### Operating Instructions:
@@ -76,7 +77,8 @@
     We needed this to convert from binary to human readable. We only wanted printable characters so we had to make sure that we did not convert ASCII values > 127 and < 31.
 
 #### Known Deficiencies and Bugs:
-**None i guess**
+**Known Bugs and Deficiencies**
+    There are currently no known bugs nor deficiencies with text and binary files.
 
 #### Lessons Learned:
 * An algorithm takes 1 hour to figured out. Its implementation takes 1 week.
