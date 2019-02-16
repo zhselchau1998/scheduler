@@ -1,5 +1,5 @@
 ## CS-530, Spring 2019 Assignment 1
-### Developed by Zack Selchau(csscXXXX) and Darpan Beri(cssc0429)
+### Developed by Zach Selchau(cssc0418) and Darpan Beri(cssc0429)
 
 #### The Program:
     The program is a hexadecimal file dump program named xbd.
