@@ -45,3 +45,5 @@ string decimalToAddress(int num);
 string addSpacesToBinary(string binary);
 
 string addSpacesToHex(string hex);
+
+/**************************[ EOF: xbd.hpp ]************************/
