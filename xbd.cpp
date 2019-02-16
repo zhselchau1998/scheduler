@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cmath>
 
+
 using namespace std;
 
 /* OUT INDEX FORMATTING FUNCTION
@@ -40,15 +41,38 @@ string binaryToAscii(string bin){
     
 }
 
+string decimalToHex(int num){
+    stringstream ss;
+    ss << hex << num;
+    return ss.str();
+}
+
 string decimalToBinary(int num){
 	string binStr = "";
+    string numStr = decimalToHex(num);
 
-	while (num > 0)
-	{
-		binStr = binStr.insert(0, string(1, (char)((num % 2) + 48)));
+    if(numStr.length()==1)numStr = "0" + numStr;
 
-		num /= 2;
-	}
+    if(strcmp(numStr.c_str(), "ffffffff")==0) return "";
+
+    for(int i=0; i<numStr.length(); i++){
+        if(numStr[i]=='0')binStr.append("0000");
+        if(numStr[i]=='1')binStr.append("0001");
+        if(numStr[i]=='2')binStr.append("0010");
+        if(numStr[i]=='3')binStr.append("0011");
+        if(numStr[i]=='4')binStr.append("0100");
+        if(numStr[i]=='5')binStr.append("0101");
+        if(numStr[i]=='6')binStr.append("0110");
+        if(numStr[i]=='7')binStr.append("0111");
+        if(numStr[i]=='8')binStr.append("1000");
+        if(numStr[i]=='9')binStr.append("1001");
+        if(numStr[i]=='a'||numStr[i]=='A')binStr.append("1010");
+        if(numStr[i]=='b'||numStr[i]=='B')binStr.append("1011");
+        if(numStr[i]=='c'||numStr[i]=='C')binStr.append("1100");
+        if(numStr[i]=='d'||numStr[i]=='D')binStr.append("1101");
+        if(numStr[i]=='e'||numStr[i]=='E')binStr.append("1110");
+        if(numStr[i]=='f'||numStr[i]=='F')binStr.append("1111");
+    }	
 
 	return binStr;
 }
@@ -59,13 +83,13 @@ string asciiToBinary(string str){
 
 	for (int i = 0; i < strLength; ++i)
 	{
-		string cBin = decimalToBinary(str[i]);
-		int cBinLength = cBin.length();
+		string cBin = decimalToBinary(int(str[i]));
+		/*int cBinLength = cBin.length();
 
 		if (cBinLength < 8) {
 			for (size_t i = 0; i < (8 - cBinLength); i++)
 				cBin = cBin.insert(0, "0");
-		}
+		}*/
 
 		bin += cBin;
 	}
@@ -100,19 +124,13 @@ string binaryToHex(string binaryString){
     return hexString;
 }
 
-string decimalToHex(int num){
-    stringstream ss;
-    ss << hex << num;
-    return ss.str();
-}
-
 string asciiToHex(string asciiString){
     return(binaryToHex(asciiToBinary(asciiString)));
 }
 
 string decimalToAddress(int num){
     string hexIndex = decimalToHex(num);
-    while(hexIndex.length() < 8) hexIndex.insert(0, "0");
+    while(hexIndex.length() < 7) hexIndex.insert(0, "0");
     return hexIndex;
 }
 
@@ -143,6 +161,7 @@ int main(int argc, char* argv[]){
     bool isOutBinary = false;       //Hex format currently
     bool isFileBinary = true;       //Binary format currently
     int fileArgIndex = 2;           //Binary format currently
+    string fullText = "";
 
     //First check for args
     if(strcmp(argv[1], "-b") == 0)
@@ -150,38 +169,32 @@ int main(int argc, char* argv[]){
     else
         fileArgIndex = 1;           //Change format to hex
 
-    //Second create ifstream
+    //Second create ifstream and check if file is a binary file
     string fileName(argv[fileArgIndex]);
-    ifstream infile(fileName);
+    stringstream ss;
+    if(strcmp(fileName.substr(fileName.length()-4, 4).c_str(), ".txt")==0){
+        isFileBinary = false;
+        ifstream infile(fileName.c_str());
+        ss << infile.rdbuf();
+        infile.close();
+        fullText = ss.str(); 
+    }
+    else{
+        FILE *fp;
+        int c = 0;
+
+        fp = fopen(argv[fileArgIndex], "r");
+        while(!feof(fp)){
+            c = fgetc(fp);
+            fullText.append(decimalToBinary(c));
+        }
+        fclose(fp);
+    }
 
     //Third put ifstream into sstream
-    if(infile){
-        stringstream ss;
-        ss << infile.rdbuf();
-        string ssLine;              //Each line in file
-        string fullText = "";            //Every character in file
-
-        //Store the file line by line in a vector
-        vector<string> buffer;
-        while(getline(ss, ssLine))
-            buffer.push_back(ssLine);
-
-        //Fourth determine if the file is ascii or binary
-        for(int n = 0; n < buffer.size(); n++){
-            ssLine = buffer[n];
-            for(int i = 0; i < ssLine.length(); i++){
-                //If this char is not a 1 or 0 then set file as ascii and break
-                //If file is already confirmed binary break
-                if(isFileBinary && (ssLine[i] == '1' || ssLine[i] == '0' ))//add "|| ssLine[i] == ' '" to end of if statement if spaces do not make a binary file ascii
-                    continue;
-                isFileBinary = false;
-                break;
-            }
-            fullText.append(ssLine);        //Storing every character in file as a string
-        }
+    if(true){
 
         //Fifth read file and convert
-
         string asciiText = "";
         string hexText = "";
         string binaryText = "";
@@ -193,12 +206,14 @@ int main(int argc, char* argv[]){
           2. hexText
           3. binaryText
         */
+        
 
         if(isFileBinary){
             
+            //Converting file to binary
             binaryText = fullText;
-            
-            while(charPointer < fullText.length()){
+
+            while(charPointer < binaryText.length()){
                 chunkLength = 0;
                 string currChunk = "";
                 string hex_string = "";
@@ -207,11 +222,11 @@ int main(int argc, char* argv[]){
                 bool tooShortException = false;
 
                 while(chunkLength < 8){ //Creating the chunk of binary
-                    if(charPointer >= fullText.length()){
+                    if(charPointer >= binaryText.length()){
                         tooShortException=true;
                         break;
                     }
-                    currChunk.append(1, fullText[charPointer++]);
+                    currChunk.append(1, binaryText[charPointer++]);
                     chunkLength++;
                 }
                 if(tooShortException){
@@ -250,8 +265,8 @@ int main(int argc, char* argv[]){
                 string binary_string = "";
                 string hex_string = "";
 
-                currChunk.append(1, fullText[charPointer++]);
-
+                currChunk.append(1, fullText[charPointer++]);\
+                
                 if(isOutBinary){
                     ascii_chunk = currChunk;
                     // Convert ascii_chunk to binary_string
@@ -330,7 +345,7 @@ int main(int argc, char* argv[]){
                 cout << decimalToAddress(address) << ": ";
 
                 //Second output binary line
-                cout << binaryLine << " ";
+                cout << binaryLine;
 
                 //Third output asciiLine
                 cout << asciiLine << endl;
@@ -362,14 +377,12 @@ int main(int argc, char* argv[]){
                 asciiLine = asciiTextClone.substr(i, 16);
 
                 // OUTPUT per line
-                cout << decimalToAddress(address) << ":" << " " << hexLine << " " << asciiLine << "\n";
+                cout << decimalToAddress(address) << ":" << " " << hexLine << asciiLine << "\n";
                 address += 16;//Incrementing the address
             }
 
         }
 
         //cout << asciiText << endl;         //Testing SS
-            
-        infile.close();
     }
 }
