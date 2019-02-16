@@ -2,7 +2,7 @@
  Name: Zach Selchau
  username: cssc0418
  Project: CS530 Assignment 1
- File: xbd.cpp
+ File: README.md
  Notes: A README file describing the program and detailing its files.
 -->
 
@@ -10,7 +10,7 @@
  Name: Darpan Beri
  username: cssc0429
  Project: CS530 Assignment 1
- File: xbd.cpp
+ File: README.md
   Notes: A README file describing the program and detailing its files.
 -->
 
