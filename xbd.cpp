@@ -84,13 +84,6 @@ string asciiToBinary(string str){
 	for (int i = 0; i < strLength; ++i)
 	{
 		string cBin = decimalToBinary(int(str[i]));
-		/*int cBinLength = cBin.length();
-
-		if (cBinLength < 8) {
-			for (size_t i = 0; i < (8 - cBinLength); i++)
-				cBin = cBin.insert(0, "0");
-		}*/
-
 		bin += cBin;
 	}
 
@@ -162,6 +155,9 @@ int main(int argc, char* argv[]){
     bool isFileBinary = true;       //Binary format currently
     int fileArgIndex = 2;           //Binary format currently
     string fullText = "";
+    string asciiText = "";
+    string hexText = "";
+    string binaryText = "";
 
     //First check for args
     if(strcmp(argv[1], "-b") == 0)
@@ -171,33 +167,21 @@ int main(int argc, char* argv[]){
 
     //Second create ifstream and check if file is a binary file
     string fileName(argv[fileArgIndex]);
-    stringstream ss;
-    if(strcmp(fileName.substr(fileName.length()-4, 4).c_str(), ".txt")==0){
-        isFileBinary = false;
-        ifstream infile(fileName.c_str());
-        ss << infile.rdbuf();
-        infile.close();
-        fullText = ss.str(); 
-    }
-    else{
-        FILE *fp;
-        int c = 0;
+    FILE *fp;
+    int c = 0;
 
-        fp = fopen(argv[fileArgIndex], "r");
-        while(!feof(fp)){
-            c = fgetc(fp);
-            fullText.append(decimalToBinary(c));
-        }
-        fclose(fp);
+    fp = fopen(argv[fileArgIndex], "r");
+    while(!feof(fp)){
+        c = fgetc(fp);
+        fullText.append(decimalToBinary(c));
     }
+    fclose(fp);
 
     //Third put ifstream into sstream
     if(true){
 
         //Fifth read file and convert
-        string asciiText = "";
-        string hexText = "";
-        string binaryText = "";
+        
         int chunkLength = 0;  //Counts chars in chuck
         int charPointer = 0; //Points to current char in fullText
 
@@ -206,82 +190,50 @@ int main(int argc, char* argv[]){
           2. hexText
           3. binaryText
         */
-        
 
-        if(isFileBinary){
-            
-            //Converting file to binary
-            binaryText = fullText;
+        //fullText is currently in Binary
+        binaryText = fullText;
 
-            while(charPointer < binaryText.length()){
-                chunkLength = 0;
-                string currChunk = "";
-                string hex_string = "";
-                string binary_chunk = "";
-                string ascii_char = "";
-                bool tooShortException = false;
+        while(charPointer < binaryText.length()){
+            chunkLength = 0;
+            string currChunk = "";
+            string hex_string = "";
+            string binary_chunk = "";
+            string ascii_char = "";
+            bool tooShortException = false;
 
-                while(chunkLength < 8){ //Creating the chunk of binary
-                    if(charPointer >= binaryText.length()){
-                        tooShortException=true;
-                        break;
-                    }
-                    currChunk.append(1, binaryText[charPointer++]);
-                    chunkLength++;
+            while(chunkLength < 8){ //Creating the chunk of binary
+                if(charPointer >= binaryText.length()){
+                    tooShortException=true;
+                    break;
                 }
-                if(tooShortException){
-                    if(chunkLength >= 4){
-                        string specialCase = currChunk.substr(0, 4);
-                        asciiText.append(".");
-                        hexText.append(binaryToHex(specialCase));
-                    }else break;
-                }
-                else if(isOutBinary){
-                     binary_chunk = currChunk;
-                    // Convert 'binary_chunk' to 'ascii_char'
-                    ascii_char = binaryToAscii(binary_chunk);
-                    // Append ascii_char to asciiText
-                    asciiText.append(ascii_char);
-                }
-                else{
-                    binary_chunk = currChunk;
-                    // Convert 'binary_chunk' to 'hex_string'
-                    hex_string = binaryToHex(binary_chunk);
-                    // Append to hexText
-                    hexText.append(hex_string);
-                    // Append to asciiText
-                    asciiText.append(binaryToAscii(binary_chunk));
-                }
-                
+                currChunk.append(1, binaryText[charPointer++]);
+                chunkLength++;
             }
-        } else{
-            
-            asciiText = fullText;
-
-            
-            while(charPointer < fullText.length()){
-                string currChunk = "";
-                string ascii_chunk = "";
-                string binary_string = "";
-                string hex_string = "";
-
-                currChunk.append(1, fullText[charPointer++]);\
-                
-                if(isOutBinary){
-                    ascii_chunk = currChunk;
-                    // Convert ascii_chunk to binary_string
-                    binary_string = asciiToBinary(ascii_chunk);
-                    // Append binary_string to binaryText
-                    binaryText.append(binary_string);
-                }else{
-                    ascii_chunk = currChunk;
-                    // Convert 'ascii_chunk' to 'hex_string'
-                    hex_string = asciiToHex(ascii_chunk);
-                    // Append hex_string to hexText
-                    hexText.append(hex_string);
-                }
-
+            if(tooShortException){
+                if(chunkLength >= 4){
+                    string specialCase = currChunk.substr(0, 4);
+                    asciiText.append(".");
+                    hexText.append(binaryToHex(specialCase));
+                }else break;
             }
+            else if(isOutBinary){
+                binary_chunk = currChunk;
+                // Convert 'binary_chunk' to 'ascii_char'
+                ascii_char = binaryToAscii(binary_chunk);
+                // Append ascii_char to asciiText
+                asciiText.append(ascii_char);
+            }
+            else{
+                binary_chunk = currChunk;
+                // Convert 'binary_chunk' to 'hex_string'
+                hex_string = binaryToHex(binary_chunk);
+                // Append to hexText
+                hexText.append(hex_string);
+                // Append to asciiText
+                asciiText.append(binaryToAscii(binary_chunk));
+            }
+                
         }
 
         /*~ isFileBinary = True:
