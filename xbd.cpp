@@ -1,18 +1,16 @@
-/*********************************************************************
+/*****************************************************************************************************
  Name: Zach Selchau
  username: cssc0418
  Project: CS530 Assignment 1
  File: xbd.cpp
  Notes: The sourcecode file containing the functions and code required to run a hex/binarydump program.
 
-
-
  Name: Darpan Beri
  username: cssc0429
  Project: CS530 Assignment 1
  File: xbd.cpp
   Notes: The sourcecode file containing the functions and code required to run a hex/binarydump program.
-**********************************************************************/
+*******************************************************************************************************/
 
 #include <iostream>
 #include <string>
@@ -27,6 +25,13 @@
 
 using namespace std;
 
+/*************************************************************
+ FUNCTION: binaryToDecimal()
+ DESCRIPTION: Converts a binary string to its decimal value.
+ I/O:
+    input parameters: String of binary
+    output: Its integer value. 
+ *************************************************************/
 int binaryToDecimal(string binaryString){
 
     double sum = 0;
@@ -39,6 +44,13 @@ int binaryToDecimal(string binaryString){
     return (int)sum;    
 }
 
+/*************************************************************
+ FUNCTION: binaryToAscii()
+ DESCRIPTION: Converts a binary string to printable characters.
+ I/O:
+    input parameters: String of binary
+    output: Its converted character, if decimal value < 127 && > 31.
+ *************************************************************/
 string binaryToAscii(string bin){
 
     const int dec = binaryToDecimal(bin);
@@ -51,12 +63,26 @@ string binaryToAscii(string bin){
     
 }
 
+/*************************************************************
+ FUNCTION: decimalToHex()
+ DESCRIPTION: Converts a decimal int to hex string.
+ I/O:
+    input parameters: int decimal value
+    output: Its converted hex values.
+ *************************************************************/
 string decimalToHex(int num){
     stringstream ss;
     ss << hex << num;
     return ss.str();
 }
 
+/*************************************************************
+ FUNCTION: decimalToBinary()
+ DESCRIPTION: Converts a decimal int to binary string.
+ I/O:
+    input parameters: int decimal value
+    output: Its converted binary values.
+ *************************************************************/
 string decimalToBinary(int num){
 	string binStr = "";
     string numStr = decimalToHex(num);
@@ -87,6 +113,13 @@ string decimalToBinary(int num){
 	return binStr;
 }
 
+/*************************************************************
+ FUNCTION: asciiToBinary()
+ DESCRIPTION: Converts a ascii string to binary string.
+ I/O:
+    input parameters: ascii string
+    output: Its converted binary values.
+ *************************************************************/
 string asciiToBinary(string str){
     string bin = "";
 	int strLength = str.length();
@@ -100,6 +133,13 @@ string asciiToBinary(string str){
 	return bin;
 }
 
+/*************************************************************
+ FUNCTION: binaryToHex()
+ DESCRIPTION: Converts a binary string to hex string.
+ I/O:
+    input parameters: binary string
+    output: Its converted hex values.
+ *************************************************************/
 string binaryToHex(string binaryString){
     string hexString = "";
 
@@ -127,16 +167,39 @@ string binaryToHex(string binaryString){
     return hexString;
 }
 
+/*************************************************************
+ FUNCTION: asciiToHex()
+ DESCRIPTION: Converts a ascii string to hex string.
+ I/O:
+    input parameters: ascii string
+    output: Its converted hex values.
+ *************************************************************/
 string asciiToHex(string asciiString){
     return(binaryToHex(asciiToBinary(asciiString)));
 }
 
+/*************************************************************
+ FUNCTION: decimalToAddress()
+ DESCRIPTION: Converts a decimal integer to hex string to be 
+ used for address in output.
+ I/O:
+    input parameters: decimal integer
+    output: Its converted hex values.
+ *************************************************************/
 string decimalToAddress(int num){
     string hexIndex = decimalToHex(num);
     while(hexIndex.length() < 7) hexIndex.insert(0, "0");
     return hexIndex;
 }
 
+/*************************************************************
+ FUNCTION: addSpacesToBinary()
+ DESCRIPTION: Adds spaces to binary string so that it becomes 
+ ready for output
+ I/O:
+    input parameters: binary string
+    output: readable binary string.
+ *************************************************************/
 string addSpacesToBinary(string binary){
     binary.append("  ");
     binary.insert(40," ");
@@ -147,6 +210,14 @@ string addSpacesToBinary(string binary){
     return binary;
 }
 
+/*************************************************************
+ FUNCTION: addSpacesToHex()
+ DESCRIPTION: Adds spaces to Hex string so that it becomes ready for
+ output
+ I/O:
+    input parameters: Hex string
+    output: readable Hex string.
+ *************************************************************/
 string addSpacesToHex(string hex){
     hex.append("  ");
     hex.insert(28," ");
@@ -159,6 +230,10 @@ string addSpacesToHex(string hex){
     return hex;
 }
 
+/*************************************************************
+ FUNCTION: main()
+ DESCRIPTION: controls flow of execution of this program
+ *************************************************************/
 int main(int argc, char* argv[]){
 
     bool isOutBinary = false;       //Hex format currently
@@ -348,3 +423,4 @@ int main(int argc, char* argv[]){
         //cout << asciiText << endl;         //Testing SS
     }
 }
+/******************************[ EOF: xbd.cpp ]****************************/
