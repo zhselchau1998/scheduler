@@ -37,14 +37,19 @@
     Creates a compiled version of xbd.cpp.
 
 #### Compilation Instructions:
-**Make Instructions**
-    make all
+**Make Instructions:**
+
+    make all:
     	compiles the xbd file
-    make clear
+
+    make clear:
     	deletes the xbd file
-**Running the Program**
+
+**Running the Program:**
+
     xbd <filename>
     xbd -b <filename>
+
 **NOTE:** <> are not part of the command.
 
 #### Operating Instructions:
